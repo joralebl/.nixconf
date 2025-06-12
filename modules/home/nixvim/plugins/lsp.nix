@@ -95,10 +95,6 @@
           enable = true;
         };
 
-        postgres_lsp = {
-          enable = true;
-        };
-
         elixirls = {
           enable = true;
         };
@@ -106,11 +102,6 @@
         htmx = {
           enable = true;
         };
-
-        html = {
-          enable = true;
-        };
-
         # ...etc. See `https://nix-community.github.io/nixvim/plugins/lsp` for a list of pre-configured LSPs
         #
         # Some languages (like typscript) have entire language plugins that can be useful:

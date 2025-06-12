@@ -1,14 +1,45 @@
-{
+{pkgs, ...}: {
   programs.nixvim = {
     # Highlight, edit, and navigate code
     # https://nix-community.github.io/nixvim/plugins/treesitter/index.html
     plugins.treesitter = {
       enable = true;
 
+      grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+        bash
+        json
+        lua
+        make
+        markdown
+        nix
+        regex
+        toml
+        vim
+        vimdoc
+        yaml
+        rasi
+        jsdoc
+        latex
+        python
+        javascript
+        typescript
+        svelte
+        go
+        gomod
+        gosum
+        rust
+        elixir
+        erlang
+        c
+        cpp
+        html
+        htmldjango
+        css
+        ruby
+      ];
+
       # TODO: Don't think I need this as nixGrammars is true which should auto install these???
       settings = {
-        ensureInstalled = "all";
-
         highlight = {
           enable = true;
 

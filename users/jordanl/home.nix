@@ -1,4 +1,8 @@
-{username, ...}: {
+{
+  username,
+  pkgs,
+  ...
+}: {
   imports = [
     ../../modules/home/shell
     ../../modules/home/hyprland
@@ -10,7 +14,7 @@
     ../../modules/home/packages.nix
     ../../modules/home/swaync.nix
     ../../modules/home/qt.nix
-    ../../modules/home/xdg.nix
+    # ../../modules/home/xdg.nix
     ../../modules/home/gtk.nix
     ../../modules/home/scripts
     ../../modules/home/rofi
@@ -28,5 +32,9 @@
   programs.git = {
     userName = "leblancja";
     userEmail = "leblancja@outlook.com";
+  };
+
+  services.udiskie = {
+    enable = true;
   };
 }

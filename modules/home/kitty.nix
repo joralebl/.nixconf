@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{lib, ...}: {
   programs.kitty = lib.mkForce {
     enable = true;
 
@@ -18,7 +14,7 @@
       "kitty_mod+t" = "launch_tab";
     };
 
-    themeFile = "gruvbox-dark-hard";
+    themeFile = "kanagawa_dragon";
     font = {
       name = "JetBrainsMono Nerd Font Mono";
     };
@@ -26,8 +22,14 @@
       confirm_os_window_close = 0;
       enable_audio_bell = false;
       mouse_hide_wait = "-1.0";
+      background_opacity = 0.95;
+      window_padding_width = 4;
+      tab_fade = 1;
+      active_tab_font_style = "bold";
+      inactive_tab_font_style = "bold";
 
-      window_padding_width = 10;
+      tab_bar_style = "powerline";
+      tab_bar_margin_width = 0;
 
       linux_display_server = "auto";
       wayland_titlebar_color = "system";

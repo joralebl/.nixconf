@@ -4,6 +4,7 @@
   username,
   ...
 }: {
+  programs.zsh.enable = true;
   users.users.${username} = {
     isNormalUser = true;
     extraGroups = ["networkmanager" "wheel" "docker"];
@@ -28,32 +29,22 @@
   i18n.defaultLocale = "en_CA.UTF-8";
 
   services.printing = {
-    enable = true;
+    enable = false;
   };
 
   environment.systemPackages = with pkgs; [
     vim
-    appimage-run
     cliphist
-    duf
     ffmpeg
     file-roller
     gedit
     eog
-    hyprpicker
-    inxi
     killall
     libnotify
-    lm_sensors
-    lshw
     mpv
-    nwg-displays
     pavucontrol
-    pciutils
-    picard
     pkg-config
     playerctl
-    socat
     unrar
     unzip
     usbutils
@@ -63,8 +54,17 @@
     xsel
     glxinfo
     ncdu
-    fastfetch
-    cachix
+    fastfetchMinimal
+    eza
+    bat
+    mcfly
+    fd
+    ripgrep
+    gcc
+    gnumake
+    cargo
+    rebar3
+    btop
   ];
 
   services.pulseaudio.enable = false;

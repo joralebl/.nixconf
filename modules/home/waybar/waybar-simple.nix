@@ -14,6 +14,7 @@ in
         {
           layer = "top";
           position = "top";
+          output = "DP-1";
           modules-center = ["hyprland/workspaces"];
           modules-left = [
             "custom/startmenu"
@@ -61,7 +62,7 @@ in
             max-length = 22;
             separate-outputs = false;
             rewrite = {
-              "" = " 🙈 No Windows? ";
+              "" = " ⚠️ No Windows? ";
             };
           };
           "memory" = {

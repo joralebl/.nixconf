@@ -12,7 +12,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   # boot.kernelParams = [
   #   "nvidia-drm.fbdev=1"
-  #   "initcall_blacklist=simpledrm_platform_driver_init"
+  #   #"initcall_blacklist=simpledrm_platform_driver_init"
   # ];
 
   imports = [
@@ -20,10 +20,14 @@
     ../../nixosModules/gaming.nix
     ../../nixosModules/hyprland.nix
     ../../nixosModules/thunar.nix
-    ../../nixosModules/nautilus.nix
+    #../../nixosModules/nautilus.nix
     ../../nixosModules/fonts.nix
     ../../nixosModules/flatpak.nix
     ../../nixosModules/stylix.nix
+    ../../nixosModules/services.nix
+    #../../nixosModules/greetd.nix
+    #../../nixosModules/regreet.nix
+    ../../nixosModules/gdm.nix
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
@@ -53,8 +57,6 @@
     options = ["defaults"];
   };
 
-  programs.zsh.enable = true;
-
   #for Nvidia GPU
   services.xserver.videoDrivers = ["nvidia"];
 
@@ -64,9 +66,13 @@
     powerManagement.finegrained = false;
     open = false;
     nvidiaSettings = true;
-    forceFullCompositionPipeline = true;
+    #forceFullCompositionPipeline = true;
     package = config.boot.kernelPackages.nvidiaPackages.latest;
   };
 
-  musnix.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+  # musnix.enable = true;
 }

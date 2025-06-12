@@ -14,14 +14,11 @@
       ignoreDups = true;
       share = true;
     };
-    initExtra = ''
+    initContent = ''
       # Set $PATH if ~/.local/bin exists
       if [ -d "$HOME/.local/bin" ]; then
       export PATH=$HOME/.local/bin:$PATH
       fi
-
-      # Use emacs key bindings
-      bindkey -e
 
       # Fuzzy find history
       autoload -U up-line-or-beginning-search
@@ -45,7 +42,7 @@
       ${pkgs.mcfly}/bin/mcfly init zsh | source /dev/stdin
 
       # Run fastfetch
-      #${pkgs.fastfetch}/bin/fastfetch
+      #${pkgs.fastfetchMinimal}/bin/fastfetch
     '';
     shellAliases = {
       ls = "${pkgs.eza}/bin/eza -al --color=always --group-directories-first --icons";

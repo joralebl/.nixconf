@@ -10,7 +10,7 @@
       };
       background = [
         {
-          path = "/home/${username}/Pictures/Wallpapers/eizensuzuki2.png";
+          path = "/home/${username}/Pictures/Wallpapers/eizensuzuki3.png";
           blur_passes = 3;
           blur_size = 8;
         }
@@ -31,7 +31,7 @@
         {
           size = "200, 50";
           position = "0, -80";
-          monitor = "";
+          monitor = "DP-1";
           dots_center = true;
           fade_on_empty = false;
           font_color = "rgb(CFE6F4)";

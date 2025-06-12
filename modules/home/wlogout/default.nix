@@ -16,7 +16,7 @@
       }
       {
         "label" = "logout";
-        "action" = "sleep 1; hyprctl dispatch exit";
+        "action" = "sleep 1; uwsm stop";
         "text" = "Exit";
         "keybind" = "e";
       }

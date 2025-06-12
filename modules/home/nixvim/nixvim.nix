@@ -4,13 +4,32 @@
       enable = true;
       defaultEditor = true;
 
-      colorschemes.gruvbox = {
-        enable = true;
-        settings = {
-          terminal_colors = true;
-          contrast = "hard";
+      colorschemes = {
+        kanagawa = {
+          enable = true;
+          autoLoad = true;
+          settings = {
+            compile = false;
+            terminalColors = true;
+            theme = "wave";
+            transparent = false;
+            undercurl = true;
+            background = {
+              dark = "dragon";
+              light = "lotus";
+            };
+          };
         };
       };
+
+      extraConfigLua = ''
+        vim.cmd [[
+        highlight Normal guibg=none
+        highlight NonText guibg=none
+        highlight Normal ctermbg=none
+        highlight NonText ctermbg=none
+        ]]
+      '';
 
       globals = {
         #set <space> as the leader key
@@ -24,7 +43,8 @@
         relativenumber = true;
         mouse = "a";
         showmode = false;
-
+        tabstop = 4;
+        shiftwidth = 4;
         breakindent = true;
 
         clipboard = {
