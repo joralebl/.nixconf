@@ -1,27 +1,27 @@
 {pkgs, ...}: {
   stylix = {
     enable = true;
-    #base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-dark.yaml";
+    #base16Scheme = "${pkgs.base16-schemes}/share/themes/everforest-dark.yaml";
     base16Scheme = {
-      base00 = "181616";
-      base01 = "0d0c0c";
-      base02 = "2d4f67";
-      base03 = "a6a69c";
-      base04 = "7fb4ca";
-      base05 = "c5c9c5";
-      base06 = "938aa9";
-      base07 = "c5c9c5";
-      base08 = "c4746e";
-      base09 = "e46876";
-      base0A = "c4b28a";
-      base0B = "8a9a7b";
-      base0C = "8ea4a2";
-      base0D = "8ba4b0";
-      base0E = "a292a3";
-      base0F = "7aa89f";
+      base00 = "2b3339";
+      base01 = "323c41";
+      base02 = "503946";
+      base03 = "868d80";
+      base04 = "d3c6aa";
+      base05 = "d3c6aa";
+      base06 = "e9e8d2";
+      base07 = "fff9e8";
+      base08 = "7fbbb3";
+      base09 = "d699b6";
+      base0A = "83c092";
+      base0B = "dbbc7f";
+      base0C = "e69875";
+      base0D = "a7c080";
+      base0E = "e67e80";
+      base0F = "d699b6";
     };
 
-    image = ../wallpapers/eizensuzuki2.png;
+    image = ../wallpapers/eizensuzuki3.png;
     polarity = "dark";
     cursor = {
       package = pkgs.bibata-cursors;

@@ -2,7 +2,7 @@
   wayland.windowManager.hyprland.settings = {
     bind = [
       "$modifier,Return,exec,kitty"
-      "$modifier ALT,W,exec,bgset"
+      #"$modifier ALT,W,exec,bgset"
       "$modifier ALT,K,exec,list-keybinds"
       "$modifier SHIFT,N,exec,swaync-client -t"
       "$modifier,S,exec,screenshootin"
@@ -13,10 +13,10 @@
       "$modifier,Q,killactive,"
       "$modifier SHIFT,F,togglefloating,"
       "$modifier SHIFT,I,togglesplit,"
-      "$modifier,B,exec,librewolf"
+      "$modifier,W,exec,librewolf"
       "$modifier,M,exec,pavucontrol"
       "$modifier,Y,exec,thunar"
-      "$modifier,W,exec,web-search"
+      "$modifier SHIFT,W,exec,web-search"
       "$modifier,E,exec,emopicker"
       "$modifier SHIFT,C,exec,uwsm stop"
       "$modifier SHIFT,Z,exec,hyprlock"

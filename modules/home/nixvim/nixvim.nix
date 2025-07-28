@@ -5,19 +5,10 @@
       defaultEditor = true;
 
       colorschemes = {
-        kanagawa = {
+        everforest = {
           enable = true;
-          autoLoad = true;
           settings = {
-            compile = false;
-            terminalColors = true;
-            theme = "wave";
-            transparent = false;
-            undercurl = true;
-            background = {
-              dark = "dragon";
-              light = "lotus";
-            };
+            background = "hard";
           };
         };
       };

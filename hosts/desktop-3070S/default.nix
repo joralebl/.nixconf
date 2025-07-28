@@ -20,13 +20,10 @@
     ../../nixosModules/gaming.nix
     ../../nixosModules/hyprland.nix
     ../../nixosModules/thunar.nix
-    #../../nixosModules/nautilus.nix
     ../../nixosModules/fonts.nix
     ../../nixosModules/flatpak.nix
     ../../nixosModules/stylix.nix
     ../../nixosModules/services.nix
-    #../../nixosModules/greetd.nix
-    #../../nixosModules/regreet.nix
     ../../nixosModules/gdm.nix
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -64,11 +61,15 @@
     modesetting.enable = true;
     powerManagement.enable = true;
     powerManagement.finegrained = false;
-    open = false;
+    open = true;
     nvidiaSettings = true;
+    videoAcceleration = true;
     #forceFullCompositionPipeline = true;
     package = config.boot.kernelPackages.nvidiaPackages.latest;
   };
+  environment.systemPackages = with pkgs.cudaPackages; [
+    cudatoolkit
+  ];
 
   hardware.bluetooth = {
     enable = true;

@@ -246,10 +246,10 @@ in
             color: #${config.lib.stylix.colors.base00};
           }
           #custom-startmenu {
-            color: #${config.lib.stylix.colors.base02};
+            color: #${config.lib.stylix.colors.base0D};
             padding: 0px 14px;
             font-size: 20px;
-            background: #${config.lib.stylix.colors.base0B};
+            background: #${config.lib.stylix.colors.base02};
           }
           #custom-hyprbindings, #network, #battery,
           #custom-notification, #custom-exit {
@@ -290,7 +290,7 @@ in
           }
           #custom-arrow6 {
             font-size: 24px;
-            color: #${config.lib.stylix.colors.base0B};
+            color: #${config.lib.stylix.colors.base02};
             background: #${config.lib.stylix.colors.base04};
           }
           #custom-arrow7 {

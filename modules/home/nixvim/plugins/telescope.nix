@@ -105,6 +105,13 @@
             desc = "[ ] Find existing buffers";
           };
         };
+        "<leader>gf" = {
+          mode = "n";
+          action = "git_files";
+          options = {
+            desc = "[ ] Searches the output of git ls-files";
+          };
+        };
       };
       settings = {
         extensions.__raw = "{ ['ui-select'] = { require('telescope.themes').get_dropdown() } }";

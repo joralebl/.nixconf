@@ -10,7 +10,7 @@
     history = {
       size = 50000;
       save = 10000;
-      path = "$HOME/.zhistory";
+      path = ".zhistory";
       ignoreDups = true;
       share = true;
     };
@@ -40,9 +40,6 @@
       bindkey "^[[1;3C" forward-word
 
       ${pkgs.mcfly}/bin/mcfly init zsh | source /dev/stdin
-
-      # Run fastfetch
-      #${pkgs.fastfetchMinimal}/bin/fastfetch
     '';
     shellAliases = {
       ls = "${pkgs.eza}/bin/eza -al --color=always --group-directories-first --icons";
@@ -65,13 +62,11 @@
       fgrep = "grep -F --color=auto";
       egrep = "grep -E --color=auto";
       ip = "ip -color";
-      nixb = "sudo nixos-rebuild switch --flake /home/jordanl/.nixconf#desktop-3070S --upgrade";
-      nixclean = "sudo nix-collect-garbage -d";
+      rebuild = "sudo nixos-rebuild switch --flake /home/jordanl/.nixconf#desktop-3070S --upgrade";
+      nix-clean = "sudo nix-collect-garbage -d";
       jctl = "journalctl -p 3 -xb";
-      dev = "cd ~/Extra/dev";
-      devw = "cd ~/Extra/dev/web";
       nixup = "nix flake update --flake /home/jordanl/.nixconf";
-      nixed = "cd ~/.nixconf && nvim";
+      config = "cd ~/.nixconf && nvim";
 
       #git aliases
       ga = "git add";

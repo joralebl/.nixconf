@@ -17,14 +17,14 @@
       ];
       image = [
         {
-          path = "/home/${username}/.config/face.jpg";
+          path = "/home/${username}/.config/lockscreen_img.png";
           size = 150;
           border_size = 4;
           border_color = "rgb(0C96F9)";
-          rounding = -1; # Negative means circle
-          position = "0, 200";
+          rounding = 0; # Negative means circle
+          position = "453, 579";
           halign = "center";
-          valign = "center";
+          #valign = "center";
         }
       ];
       input-field = [
@@ -37,7 +37,7 @@
           font_color = "rgb(CFE6F4)";
           inner_color = "rgb(657DC2)";
           outer_color = "rgb(0D0E15)";
-          outline_thickness = 5;
+          outline_thickness = 4;
           placeholder_text = "Password...";
           shadow_passes = 2;
         }

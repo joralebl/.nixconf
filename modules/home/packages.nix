@@ -1,24 +1,20 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    #dev
     vscode-fhs
     docker-compose
     aseprite
     bruno
     bruno-cli
-    blender
+    (blender.override {config.cudaSupport = true;})
     godot
     krita
-
-    #productivity
-    obsidian
+    #obsidian
     calibre
-
-    #games
-    prismlauncher
+    #prismlauncher
     r2modman
-
-    #etc
     vesktop
+    wf-recorder
+    pureref
+    qbittorrent
   ];
 }

@@ -8,7 +8,7 @@
       enable = true;
       settings = {
         size = 20;
-        open_mapping = "[[<Leader>tt]]";
+        open_mapping = "[[\\]]";
         hide_numbers = true;
         shade_terminals = true;
         shading_factor = 2;

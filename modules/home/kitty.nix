@@ -14,7 +14,7 @@
       "kitty_mod+t" = "launch_tab";
     };
 
-    themeFile = "kanagawa_dragon";
+    themeFile = "everforest_dark_hard";
     font = {
       name = "JetBrainsMono Nerd Font Mono";
     };

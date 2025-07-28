@@ -9,7 +9,7 @@
     ./hyprlock.nix
     ./hypridle.nix
     ./pyprland.nix
-    ./animations-def.nix
+    ./animations-end4.nix
   ];
   # systemd.user.targets.hyprland-session.Unit.Wants = [
   #   "xdg-desktop-autostart.target"
@@ -40,8 +40,8 @@
       general = {
         "$modifier" = "SUPER";
         layout = "dwindle";
-        gaps_in = 6;
-        gaps_out = 8;
+        gaps_in = 4;
+        gaps_out = 4;
         resize_on_border = true;
       };
 
@@ -60,8 +60,10 @@
         sync_gsettings_theme = true;
         no_hardware_cursors = 2; # change to 1 if want to disable
         enable_hyprcursor = false;
-        warp_on_change_workspace = 2;
-        no_warps = true;
+        warp_on_change_workspace = 1;
+        warp_on_toggle_special = 1;
+        default_monitor = "DP-1";
+        no_warps = false;
       };
 
       input = {
@@ -87,6 +89,11 @@
           render_power = 3;
           color = "rgba(1a1a1aee)";
         };
+      };
+
+      binds = {
+        workspace_back_and_forth = true;
+        workspace_center_on = 1;
       };
 
       misc = {
@@ -116,13 +123,12 @@
         "pypr &"
         "nm-applet --indicator"
         "systemctl --user restart nscd.service"
+        "xrandr --output DP-1 --primary"
         # "sleep 1.5 && swww img ${stylixImage}"
       ];
 
       render = {
-        explicit_sync = 1;
-        explicit_sync_kms = 1;
-        direct_scanout = 0;
+        direct_scanout = 2;
       };
       master = {
         new_status = "master";
@@ -172,4 +178,5 @@
   ];
 
   services.network-manager-applet.enable = true;
+  services.xembed-sni-proxy.enable = true;
 }
