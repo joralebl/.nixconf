@@ -21,7 +21,7 @@
       base0F = "d699b6";
     };
 
-    image = ../wallpapers/eizensuzuki3.png;
+    image = ../wallpapers/streetlights_2.png;
     polarity = "dark";
     cursor = {
       package = pkgs.bibata-cursors;

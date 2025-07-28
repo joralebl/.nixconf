@@ -10,30 +10,30 @@
       };
       background = [
         {
-          path = "/home/${username}/Pictures/Wallpapers/eizensuzuki3.png";
-          blur_passes = 3;
-          blur_size = 8;
+          path = "/home/${username}/Pictures/Wallpapers/streetlights_2.png";
+          # blur_passes = 3;
+          # blur_size = 8;
         }
       ];
-      image = [
-        {
-          path = "/home/${username}/.config/lockscreen_img.png";
-          size = 150;
-          border_size = 4;
-          border_color = "rgb(0C96F9)";
-          rounding = 0; # Negative means circle
-          position = "453, 579";
-          halign = "center";
-          #valign = "center";
-        }
-      ];
+      # image = [
+      #   {
+      #     path = "/home/${username}/.config/lockscreen_img.png";
+      #     size = 150;
+      #     border_size = 4;
+      #     border_color = "rgb(0C96F9)";
+      #     rounding = 0; # Negative means circle
+      #     position = "453, 579";
+      #     halign = "center";
+      #     #valign = "center";
+      #   }
+      # ];
       input-field = [
         {
           size = "200, 50";
           position = "0, -80";
           monitor = "DP-1";
           dots_center = true;
-          fade_on_empty = false;
+          fade_on_empty = true;
           font_color = "rgb(CFE6F4)";
           inner_color = "rgb(657DC2)";
           outer_color = "rgb(0D0E15)";
