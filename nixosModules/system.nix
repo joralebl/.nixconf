@@ -67,6 +67,7 @@
     btop
   ];
 
+  programs.hamster.enable = true;
   services.pulseaudio.enable = false;
 
   services.pipewire = {
