@@ -21,5 +21,6 @@
     ./plugins/toggleterm.nix
     # ./plugins/neotree.nix
     #./plugins/java.nix
+    ./plugins/vimwiki.nix
   ];
 }
