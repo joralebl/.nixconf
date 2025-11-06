@@ -78,6 +78,17 @@
       keymaps = [
         {
           mode = [
+            "i"
+          ];
+          key = "jk";
+          action = "<Esc>";
+          options = {
+            remap = false;
+          };
+        }
+
+        {
+          mode = [
             "n"
             "x"
           ];

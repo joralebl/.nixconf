@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    nixvim.homeManagerModules.nixvim
+    nixvim.homeModules.nixvim
     ./nixvim.nix
     ./plugins/conform.nix
     ./plugins/nvim-cmp.nix
