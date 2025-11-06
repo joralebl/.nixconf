@@ -25,8 +25,4 @@
     name = "leblancja";
     email = "leblancja@outlook.com";
   };
-
-  services.udiskie = {
-    enable = true;
-  };
 }
