@@ -10,5 +10,9 @@ _: {
     nixvim.enable = false;
     starship.enable = false;
     qt.enable = true;
+    librewolf = {
+      enable = true;
+      profileNames = ["default"];
+    };
   };
 }

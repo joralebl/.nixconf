@@ -10,7 +10,7 @@
     history = {
       size = 50000;
       save = 10000;
-      path = ".zhistory";
+      path = "${config.home.homeDirectory}/.zhistory";
       ignoreDups = true;
       share = true;
     };

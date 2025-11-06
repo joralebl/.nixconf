@@ -21,9 +21,9 @@
   };
 
   programs.home-manager.enable = true;
-  programs.git = {
-    userName = "leblancja";
-    userEmail = "leblancja@outlook.com";
+  programs.git.settings.user = {
+    name = "leblancja";
+    email = "leblancja@outlook.com";
   };
 
   services.udiskie = {
