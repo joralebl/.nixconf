@@ -14,7 +14,7 @@
   };
   environment.systemPackages = with pkgs; [
     mangohud
-    protonup
+    protonup-ng
     wine-staging
     winetricks
     protontricks

@@ -14,14 +14,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    musnix = {
-      url = "github:musnix/musnix";
-    };
-
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-    };
-
     stylix = {
       url = "github:danth/stylix";
     };
@@ -44,16 +36,15 @@
           system = "x86_64-linux";
 
           modules = [
-            inputs.musnix.nixosModules.musnix
             inputs.stylix.nixosModules.stylix
 
-            ./hosts/desktop-3070S
+            ./hosts/${host}
 
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "backup";
+              home-manager.backupFileExtension = "bu";
 
               home-manager.extraSpecialArgs = inputs // specialArgs;
               home-manager.users.${username} = import ./users/${username}/home.nix;

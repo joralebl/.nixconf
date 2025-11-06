@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     vscode-fhs
+    jetbrains.idea-community
     docker-compose
     aseprite
     bruno
@@ -8,7 +9,7 @@
     (blender.override {config.cudaSupport = true;})
     godot
     krita
-    #obsidian
+    # obsidian
     calibre
     #prismlauncher
     r2modman
@@ -16,5 +17,10 @@
     wf-recorder
     pureref
     qbittorrent
+    calcure
+    kdePackages.zanshin
+    kdePackages.kontact
+    kdePackages.akonadi
+    kdePackages.akonadi-calendar-tools
   ];
 }

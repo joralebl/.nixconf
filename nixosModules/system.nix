@@ -12,8 +12,6 @@
   };
 
   nix.settings = {
-    substituters = ["https://hyprland.cachix.org"];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
     experimental-features = ["nix-command" "flakes"];
   };
 
@@ -29,30 +27,17 @@
   i18n.defaultLocale = "en_CA.UTF-8";
 
   services.printing = {
-    enable = false;
+    enable = true;
   };
 
   environment.systemPackages = with pkgs; [
     vim
-    cliphist
+    lua
     ffmpeg
-    file-roller
-    gedit
-    eog
-    killall
-    libnotify
     mpv
-    pavucontrol
     pkg-config
-    playerctl
-    unrar
-    unzip
-    usbutils
-    git
-    wget
     curl
     xsel
-    glxinfo
     ncdu
     fastfetchMinimal
     eza
@@ -67,9 +52,8 @@
     btop
   ];
 
-  programs.hamster.enable = true;
+  programs.nix-ld.enable = true;
   services.pulseaudio.enable = false;
-
   services.pipewire = {
     enable = true;
     alsa.enable = true;

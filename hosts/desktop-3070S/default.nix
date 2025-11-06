@@ -4,27 +4,21 @@
 {
   config,
   pkgs,
-  lib,
+  host,
   ...
 }: {
   system.stateVersion = "24.05";
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  # boot.kernelParams = [
-  #   "nvidia-drm.fbdev=1"
-  #   #"initcall_blacklist=simpledrm_platform_driver_init"
-  # ];
 
   imports = [
     ../../nixosModules/system.nix
     ../../nixosModules/gaming.nix
-    ../../nixosModules/hyprland.nix
-    ../../nixosModules/thunar.nix
-    ../../nixosModules/fonts.nix
     ../../nixosModules/flatpak.nix
     ../../nixosModules/stylix.nix
     ../../nixosModules/services.nix
-    ../../nixosModules/gdm.nix
+    ../../nixosModules/plasma.nix
+
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
@@ -38,7 +32,7 @@
 
   zramSwap.enable = true;
 
-  networking.hostName = "desktop-3070S"; # Define your hostname.
+  networking.hostName = "${host}"; # Define your hostname.
 
   networking.networkmanager.enable = true;
 
@@ -59,7 +53,7 @@
 
   hardware.nvidia = {
     modesetting.enable = true;
-    powerManagement.enable = true;
+    powerManagement.enable = false;
     powerManagement.finegrained = false;
     open = true;
     nvidiaSettings = true;
@@ -67,13 +61,9 @@
     #forceFullCompositionPipeline = true;
     package = config.boot.kernelPackages.nvidiaPackages.latest;
   };
-  environment.systemPackages = with pkgs.cudaPackages; [
-    cudatoolkit
-  ];
 
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
   };
-  # musnix.enable = true;
 }

@@ -22,6 +22,8 @@
         ]]
       '';
 
+      extraConfigVim = "au BufNewFile ~/Store/notes/diary/*.md :silent 0r !~/.nvim/bin/generate-vimwiki-diary-template.lua '%'";
+
       globals = {
         #set <space> as the leader key
         mapleader = " ";
@@ -461,7 +463,7 @@
         }
         {
           mode = "n";
-          key = "<leader>ww";
+          key = "<leader>wo";
           action = "<C-W>p";
           options = {
             desc = "Other Window";

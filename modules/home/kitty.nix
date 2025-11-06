@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   programs.kitty = lib.mkForce {
     enable = true;
 
@@ -18,6 +22,9 @@
     font = {
       name = "JetBrainsMono Nerd Font Mono";
     };
+
+    enableGitIntegration = true;
+
     settings = {
       confirm_os_window_close = 0;
       enable_audio_bell = false;
@@ -29,11 +36,16 @@
       inactive_tab_font_style = "bold";
 
       tab_bar_style = "powerline";
+      tab_powerline_style = "slanted";
       tab_bar_margin_width = 0;
 
       linux_display_server = "auto";
-      wayland_titlebar_color = "system";
 
+      window_margin_width = 7;
+      single_window_margin_width = 0;
+
+      enabled_layouts = "Tall, *";
+      startup_session = "default-session.kitty-session";
       # #Kanagawa colors
       # #: The basic colors
       #
