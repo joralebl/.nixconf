@@ -50,6 +50,7 @@
     cargo
     rebar3
     btop
+    taskwarrior3
   ];
 
   programs.nix-ld.enable = true;

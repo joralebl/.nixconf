@@ -6,6 +6,7 @@
   imports = [
     nixvim.homeModules.nixvim
     ./nixvim.nix
+    ./keys.nix
     ./plugins/conform.nix
     ./plugins/nvim-cmp.nix
     ./plugins/lsp.nix

@@ -14,7 +14,6 @@
     #prismlauncher
     r2modman
     vesktop
-    wf-recorder
     pureref
     qbittorrent
     calcure
