@@ -15,7 +15,7 @@
         list = [
           {
             ext = ".md";
-            path = "~/Store/notes/";
+            path = "~/notes/";
             syntax = "markdown";
           }
         ];

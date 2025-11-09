@@ -51,6 +51,7 @@
     rebar3
     btop
     taskwarrior3
+    silver-searcher
   ];
 
   programs.nix-ld.enable = true;

@@ -114,7 +114,7 @@
         };
       };
       extraPython3Packages = ps: with ps; [pynvim tasklib six packaging];
-      extraPlugins = with pkgs; [vimPlugins.taskwiki];
+      extraPlugins = with pkgs; [vimPlugins.taskwiki vimPlugins.vim-zettel];
       extraConfigLua = ''
         vim.cmd [[
           highlight Normal guibg=none
@@ -125,9 +125,23 @@
 
       '';
       extraConfigVim = ''
-        au BufNewFile ~/Store/notes/diary/*.md :silent 0r !~/.nvim/bin/generate-vimwiki-diary-template.lua '%'
-        let g:taskwiki_dont_fold = 'yes'
-        let g:taskwiki_dont_preserve_folds = 'yes'
+              au BufNewFile ~/notes/diary/*.md :silent 0r !~/.nvim/bin/generate-vimwiki-diary-template.lua '%'
+
+              function! s:insert_id()
+              	if exists("g:zettel_current_id")
+              		return g:zettel_current_id
+              	else
+              		return "unnamed"
+              	endif
+              endfunction
+
+              let g:taskwiki_dont_fold = 'yes'
+              let g:taskwiki_dont_preserve_folds = 'yes'
+              let g:vimwiki_markdown_link_ext = 1
+
+              let g:zettel_options = [{"template" : "~/notes/meta/zettel.tpl", "rel_path" : "zettel/", "disable_front_matter" : 1}]
+
+        nnoremap <leader>zn :ZettelNew<space>
       '';
     };
   };
