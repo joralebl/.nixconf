@@ -45,7 +45,6 @@
       single_window_margin_width = 0;
 
       enabled_layouts = "Tall, *";
-      startup_session = "default-session.kitty-session";
       # #Kanagawa colors
       # #: The basic colors
       #

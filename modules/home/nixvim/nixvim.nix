@@ -125,23 +125,24 @@
 
       '';
       extraConfigVim = ''
-              au BufNewFile ~/notes/diary/*.md :silent 0r !~/.nvim/bin/generate-vimwiki-diary-template.lua '%'
+                 au BufNewFile ~/notes/diary/*.md :silent 0r !~/.nvim/bin/generate-vimwiki-diary-template.lua '%'
 
-              function! s:insert_id()
-              	if exists("g:zettel_current_id")
-              		return g:zettel_current_id
-              	else
-              		return "unnamed"
-              	endif
-              endfunction
+                 function! s:insert_id()
+                 	if exists("g:zettel_current_id")
+                 		return g:zettel_current_id
+                 	else
+                 		return "unnamed"
+                 	endif
+                 endfunction
 
-              let g:taskwiki_dont_fold = 'yes'
-              let g:taskwiki_dont_preserve_folds = 'yes'
-              let g:vimwiki_markdown_link_ext = 1
+                 let g:taskwiki_dont_fold = 'yes'
+                 let g:taskwiki_dont_preserve_folds = 'yes'
+                 let g:vimwiki_markdown_link_ext = 1
 
-              let g:zettel_options = [{"template" : "~/notes/meta/zettel.tpl", "rel_path" : "zettel/", "disable_front_matter" : 1}]
+                 let g:zettel_options = [{"template" : "~/notes/meta/zettel.tpl", "rel_path" : "zettel/", "disable_front_matter" : 1}]
+        let g:zettel_format = "%y%m%d%H%M"
 
-        nnoremap <leader>zn :ZettelNew<space>
+           nnoremap <leader>zn :ZettelNew<space>
       '';
     };
   };

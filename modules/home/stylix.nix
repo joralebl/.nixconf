@@ -11,5 +11,6 @@ _: {
       enable = true;
       profileNames = ["default"];
     };
+    bat.enable = true;
   };
 }
