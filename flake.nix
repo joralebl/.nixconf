@@ -20,10 +20,10 @@
 
     niri.url = "github:sodiboo/niri-flake";
 
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # quickshell = {
+    #   url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # noctalia = {
     #   url = "github:noctalia-dev/noctalia-shell";
@@ -50,6 +50,7 @@
 
           modules = [
             inputs.stylix.nixosModules.stylix
+            inputs.niri.nixosModules.niri
             ./hosts/${host}
             home-manager.nixosModules.home-manager
             {

@@ -60,14 +60,6 @@
     taskwarrior3
     silver-searcher
 
-    # Quickshell stuff
-    qt6Packages.qt5compat
-    libsForQt5.qt5.qtgraphicaleffects
-    kdePackages.qtbase
-    kdePackages.qtdeclarative
-    kdePackages.qtstyleplugin-kvantum
-    wallust
-
     # Niri
     xwayland-satellite
     wl-clipboard
