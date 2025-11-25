@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  inputs,
   lib,
   username,
   host,
@@ -28,7 +29,7 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-
+  nixpkgs.overlays = [inputs.niri.overlays.niri];
   time.timeZone = "America/Moncton";
   i18n.defaultLocale = "en_CA.UTF-8";
 
@@ -70,7 +71,7 @@
     # Niri
     xwayland-satellite
     wl-clipboard
-    inputs.noctalia.packages.${system}.default
+    # inputs.noctalia.packages.${system}.default
   ];
 
   programs.nix-ld.enable = true;

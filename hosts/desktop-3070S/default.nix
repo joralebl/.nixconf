@@ -14,7 +14,7 @@
     ../../modules/system/stylix.nix
     ../../modules/system/services.nix
     ../../modules/system/xdg.nix
-    ../../modules/system/plasma.nix
+    ../../modules/system/niri.nix
 
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
