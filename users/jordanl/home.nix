@@ -8,11 +8,12 @@
     ../../modules/home/nixvim
     ../../modules/home/git.nix
     ../../modules/home/kitty.nix
-    ../../modules/home/browsers.nix
     ../../modules/home/packages.nix
-    ../../modules/home/qt.nix
-    ../../modules/home/gtk.nix
     ../../modules/home/stylix.nix
+    ../../modules/home/gtk.nix
+    ../../modules/home/qt.nix
+    ../../modules/home/niri
+    ../../modules/home/scripts
   ];
   home = {
     inherit username;

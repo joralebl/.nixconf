@@ -71,6 +71,15 @@
       servers = {
         clangd = {
           enable = true;
+          packageFallback = true;
+          cmd = [
+            "clangd"
+            "--background-index"
+          ];
+          filetypes = [
+            "c"
+            "cpp"
+          ];
         };
 
         gopls = {

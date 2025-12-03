@@ -9,7 +9,22 @@
   };
   programs.steam = {
     enable = true;
-    gamescopeSession.enable = true;
+    extraPackages = with pkgs; [
+      gamescope
+      gamemode
+    ];
+    gamescopeSession = {
+      enable = true;
+      args = [
+        "--xwayland-count 2"
+        "-e"
+        "--steam"
+
+        "--prefer-output DP-1"
+        "--output-width 2560"
+        "--output-height 1440"
+      ];
+    };
     extraCompatPackages = [pkgs.proton-ge-bin];
   };
   environment.systemPackages = with pkgs; [
@@ -31,11 +46,5 @@
   programs.gamescope = {
     enable = true;
     capSysNice = true;
-    args = [
-      "--rt"
-      "--expose-wayland"
-    ];
   };
-
-  hardware.steam-hardware.enable = true;
 }

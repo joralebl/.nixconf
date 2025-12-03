@@ -18,18 +18,14 @@
       url = "github:danth/stylix";
     };
 
-    niri.url = "github:sodiboo/niri-flake";
+    niri = {
+      url = "github:sodiboo/niri-flake";
+    };
 
-    # quickshell = {
-    #   url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    # noctalia = {
-    #   url = "github:noctalia-dev/noctalia-shell";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   inputs.quickshell.follows = "quickshell";
-    # };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -50,14 +46,13 @@
 
           modules = [
             inputs.stylix.nixosModules.stylix
-            inputs.niri.nixosModules.niri
             ./hosts/${host}
             home-manager.nixosModules.home-manager
             {
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                backupFileExtension = "bu";
+                backupFileExtension = "backup";
                 extraSpecialArgs = inputs // specialArgs;
                 users.${username} = import ./users/${username}/home.nix;
               };

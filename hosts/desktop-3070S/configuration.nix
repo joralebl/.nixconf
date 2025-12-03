@@ -14,7 +14,7 @@
   programs.zsh.enable = true;
   users.users.${username} = {
     isNormalUser = true;
-    extraGroups = ["networkmanager" "wheel" "docker"];
+    extraGroups = ["networkmanager" "wheel" "docker" "i2c"];
     shell = pkgs.zsh;
   };
 
@@ -27,9 +27,10 @@
     dates = lib.mkDefault "weekly";
     options = lib.mkDefault "--delete-older-than 7d";
   };
+  zramSwap.enable = true;
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = [inputs.niri.overlays.niri];
+
   time.timeZone = "America/Moncton";
   i18n.defaultLocale = "en_CA.UTF-8";
 
@@ -52,18 +53,21 @@
     mcfly
     fd
     ripgrep
-    gcc
     gnumake
     cargo
     rebar3
     btop
     taskwarrior3
     silver-searcher
-
-    # Niri
-    xwayland-satellite
+    librewolf
+    pwvucontrol
+    unrar
+    unzip
+    # ~~~~Niri
     wl-clipboard
-    # inputs.noctalia.packages.${system}.default
+    networkmanagerapplet
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+    ddcutil
   ];
 
   programs.nix-ld.enable = true;
@@ -82,14 +86,13 @@
   };
 
   #bootloader
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-    efi.efiSysMountPoint = "/boot";
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/boot";
+    };
   };
-
-  zramSwap.enable = true;
-
   networking.hostName = "${host}"; # Define your hostname.
 
   networking.networkmanager.enable = true;
@@ -125,13 +128,7 @@
     powerOnBoot = true;
   };
 
-  security.rtkit.enable = true;
-  security.polkit.enable = true;
-  programs.dconf.enable = true;
-  services.dbus.enable = true;
-
   virtualisation.docker = {
     enable = true;
   };
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 }
