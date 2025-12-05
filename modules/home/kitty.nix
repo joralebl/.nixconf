@@ -18,7 +18,7 @@
       "kitty_mod+t" = "launch_tab";
     };
 
-    themeFile = "everforest_dark_hard";
+    themeFile = "Dracula";
     font = {
       name = "JetBrainsMono Nerd Font Mono";
     };

@@ -86,5 +86,6 @@
       action = spawn ["niri-gaming-mode.sh"];
     };
     "Mod+Alt+C".action = spawn ["screenshootin.sh"];
+    "Mod+T".action = spawn ["kitten" "quick-access-terminal"];
   };
 }

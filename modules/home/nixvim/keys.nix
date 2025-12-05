@@ -1,6 +1,26 @@
 _: {
   programs.nixvim = {
     keymaps = [
+      # Mini Pick ~~~
+      {
+        mode = ["n"];
+        key = "<leader>pf";
+        action = "<cmd>Pick files<cr>";
+        # desc = "[P]ick [F]iles";
+      }
+      {
+        mode = ["n"];
+        key = "<leader>pb";
+        action = "<cmd>Pick buffers<cr>";
+        # desc = "[P]ick open [B]uffers";
+      }
+      {
+        mode = ["n"];
+        key = "<leader>pg";
+        action = "<cmd>Pick grep_live<cr>";
+        # desc = "[P]ick from live [G]rep";
+      }
+      # ~~~~~~~~~~~~~
       {
         mode = [
           "i"

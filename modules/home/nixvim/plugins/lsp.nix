@@ -165,7 +165,7 @@
           {
             mode = "n";
             key = "gd";
-            action.__raw = "require('telescope.builtin').lsp_definitions";
+            action = "<cmd>Pick lsp scope='definition'<cr>";
             options = {
               desc = "LSP: [G]oto [D]efinition";
             };
@@ -174,7 +174,7 @@
           {
             mode = "n";
             key = "gr";
-            action.__raw = "require('telescope.builtin').lsp_references";
+            action = "<cmd>Pick lsp scope='references'<cr>";
             options = {
               desc = "LSP: [G]oto [R]eferences";
             };
@@ -184,7 +184,7 @@
           {
             mode = "n";
             key = "gI";
-            action.__raw = "require('telescope.builtin').lsp_implementations";
+            action = "<cmd>Pick lsp scope='implementation'<cr>";
             options = {
               desc = "LSP: [G]oto [I]mplementation";
             };
@@ -195,7 +195,7 @@
           {
             mode = "n";
             key = "<leader>D";
-            action.__raw = "require('telescope.builtin').lsp_type_definitions";
+            action = "<cmd>Pick lsp scope='type_definition'<cr>";
             options = {
               desc = "LSP: Type [D]efinition";
             };
@@ -205,7 +205,7 @@
           {
             mode = "n";
             key = "<leader>ds";
-            action.__raw = "require('telescope.builtin').lsp_document_symbols";
+            action = "<cmd>Pick lsp scope='document_symbol'<cr>";
             options = {
               desc = "LSP: [D]ocument [S]ymbols";
             };
@@ -215,7 +215,7 @@
           {
             mode = "n";
             key = "<leader>ws";
-            action.__raw = "require('telescope.builtin').lsp_dynamic_workspace_symbols";
+            action = "<cmd>Pick lsp scope='workspace_symbol'<cr>";
             options = {
               desc = "LSP: [W]orkspace [S]ymbols";
             };

@@ -19,7 +19,7 @@
     };
 
     layout = {
-      gaps = 12;
+      gaps = 16;
       center-focused-column = "never";
 
       tab-indicator = {

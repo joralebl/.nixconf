@@ -8,12 +8,9 @@
     ../../modules/system/flatpak.nix
     ../../modules/system/stylix.nix
     ../../modules/system/services.nix
-    # ../../modules/system/xdg.nix
-    # ../../modules/system/plasma.nix
     ../../modules/system/niri.nix
     ../../modules/system/greetd.nix
     ../../modules/system/thunar.nix
-    # ../../modules/system/ly.nix
 
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
