@@ -39,10 +39,12 @@
   };
 
   environment.systemPackages = with pkgs; [
+    clang-tools
+    clang
+    gcc
     vim
     lua
     ffmpeg
-    mpv
     pkg-config
     curl
     xsel
@@ -56,10 +58,8 @@
     gnumake
     cargo
     rebar3
-    btop
     taskwarrior3
     silver-searcher
-    librewolf
     pwvucontrol
     unrar
     unzip
@@ -69,8 +69,19 @@
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     ddcutil
   ];
-
-  programs.nix-ld.enable = true;
+  programs.starship = {
+	enable = true;
+    presets = [
+      "pure-preset"
+    ];
+  };
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      stdenv.cc.cc
+      gccStdenv.cc.cc
+    ];
+  };
   services.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;

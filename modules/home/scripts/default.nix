@@ -15,5 +15,6 @@
     # (import ./list-keybinds.nix {inherit pkgs;})
     # (import ./task-waybar.nix {inherit pkgs;})
     (import ./niri-gaming-mode.nix {inherit pkgs;})
+    (import ./note-now.nix {inherit pkgs;})
   ];
 }

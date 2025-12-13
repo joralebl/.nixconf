@@ -71,17 +71,22 @@
       servers = {
         clangd = {
           enable = true;
-          packageFallback = true;
+          packageFallback = false;
           cmd = [
             "clangd"
             "--background-index"
+            "--suggest-missing-includes"
           ];
           filetypes = [
             "c"
             "cpp"
+            "objc"
+            "objcpp"
           ];
         };
-
+        markdown = {
+          enable = true;
+        };
         gopls = {
           enable = true;
         };
@@ -108,9 +113,14 @@
           enable = true;
         };
 
-        htmx = {
+        eslint = {
           enable = true;
+          filetypes = [
+            "javascript"
+            "javascriptreact"
+          ];
         };
+
         # ...etc. See `https://nix-community.github.io/nixvim/plugins/lsp` for a list of pre-configured LSPs
         #
         # Some languages (like typscript) have entire language plugins that can be useful:
@@ -119,11 +129,17 @@
         # But for many setups the LSP (`tsserver`) will work just fine
         ts_ls = {
           enable = true;
+          filetypes = [
+            "typescript"
+            "typescriptreact"
+          ];
         };
 
         emmet_language_server = {
           enable = true;
           filetypes = [
+            "html"
+            "css"
             "javascriptreact"
             "typescriptreact"
           ];

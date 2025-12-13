@@ -10,8 +10,7 @@
     ../../modules/system/services.nix
     ../../modules/system/niri.nix
     ../../modules/system/greetd.nix
-    ../../modules/system/thunar.nix
-
+    ../../modules/system/nautilus.nix
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];

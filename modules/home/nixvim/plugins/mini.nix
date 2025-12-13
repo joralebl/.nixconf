@@ -9,6 +9,7 @@
         pick = {
         };
         extra = {};
+        sessions = {};
         # Better Around/Inside textobjects
         #
         # Examples:

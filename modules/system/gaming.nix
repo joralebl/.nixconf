@@ -25,7 +25,6 @@
         "--output-height 1440"
       ];
     };
-    extraCompatPackages = [pkgs.proton-ge-bin];
   };
   environment.systemPackages = with pkgs; [
     mangohud

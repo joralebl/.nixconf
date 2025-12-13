@@ -2,7 +2,9 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  corner-radius = 4.0;
+in {
   programs.niri.settings = {
     xwayland-satellite = {
       enable = true;
@@ -10,6 +12,7 @@
     };
     spawn-at-startup = [
       {command = ["noctalia-shell"];}
+      {command = ["dispwin" "-d" "DP-1" "/home/jordanl/rtings-icc-profile.icm"];}
     ];
     input = {
       mouse = {
@@ -21,6 +24,14 @@
     layout = {
       gaps = 16;
       center-focused-column = "never";
+      always-center-single-column = true;
+
+      focus-ring = {
+        width = 2;
+      };
+      border = {
+        width = 2;
+      };
 
       tab-indicator = {
         hide-when-single-tab = true;
@@ -32,6 +43,23 @@
     };
 
     prefer-no-csd = true;
+    window-rules = [
+      {
+        matches = [];
+        geometry-corner-radius = {
+          bottom-left = corner-radius;
+          bottom-right = corner-radius;
+          top-left = corner-radius;
+          top-right = corner-radius;
+        };
+        clip-to-geometry = true;
+      }
+      {
+        matches = [{is-floating = true;}];
+        shadow.enable = true;
+      }
+    ];
+
     outputs = {
       HDMI-A-1 = {
         enable = true;

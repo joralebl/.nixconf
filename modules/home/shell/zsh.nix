@@ -40,6 +40,7 @@
       bindkey "^[[1;3C" forward-word
 
       ${pkgs.mcfly}/bin/mcfly init zsh | source /dev/stdin
+	  eval "$(${pkgs.starship}/bin/starship init zsh)"
     '';
     shellAliases = {
       ls = "${pkgs.eza}/bin/eza -al --color=always --group-directories-first --icons";

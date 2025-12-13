@@ -5,7 +5,6 @@ _: {
     starship.enable = false;
     gtk.enable = true;
     qt.enable = true;
-    xfce.enable = true;
     kde.enable = true;
     vencord.enable = true;
     vesktop.enable = true;

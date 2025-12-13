@@ -17,7 +17,6 @@
         vim
         vimdoc
         yaml
-        rasi
         jsdoc
         latex
         python

@@ -9,12 +9,16 @@
     "Mod+Alt+L".action = spawn ["noctalia-shell" "ipc" "call" "lockScreen" "lock"];
     "Mod+Shift+Q".action = spawn ["noctalia-shell" "ipc" "call" "sessionMenu" "toggle"];
     "Ctrl+Alt+Delete".action = spawn ["noctalia-shell" "ipc" "call" "sessionMenu" "toggle"];
+	"Mod+M".action = spawn ["noctalia-shell" "ipc" "call" "volume" "muteInput"];
+	"Mod+Alt+R".action = spawn ["noctalia-shell" "ipc" "call" "screenRecorder" "toggle"];
+	"Mod+Alt+E".action = spawn ["noctalia-shell" "ipc" "call" "launcher" "emoj"];
+	
 
     #niri
     "Mod+Shift+Slash".action = show-hotkey-overlay;
     "Mod+Return".action = spawn "kitty";
     "Mod+Q".action = close-window;
-    "Mod+E".action = spawn "thunar";
+    "Mod+E".action = spawn "nautilus";
     "Mod+O".action = toggle-overview;
 
     "Mod+H".action = focus-column-left;
@@ -38,18 +42,18 @@
     "Mod+Shift+L".action = focus-monitor-right;
 
     "Mod+Shift+Ctrl+H".action = move-column-to-monitor-left;
-    "Mod+Shift+Ctrl+J".action = move-column-to-monitor-left;
-    "Mod+Shift+Ctrl+K".action = move-column-to-monitor-left;
-    "Mod+Shift+Ctrl+L".action = move-column-to-monitor-left;
+    "Mod+Shift+Ctrl+J".action = move-column-to-workspace-down;
+    "Mod+Shift+Ctrl+K".action = move-column-to-workspace-up;
+    "Mod+Shift+Ctrl+L".action = move-column-to-monitor-right;
 
     # "Mod+Alt+K".action = focus-workspace-up;
     # "Mod+Alt+J".action = focus-workspace-down;
     # "Mod+Ctrl+Alt+K".action = move-column-to-workspace-up;
     # "Mod+Ctrl+Alt+J".action = move-column-to-workspace-down;
-    "Mod+U".action = focus-workspace-up;
-    "Mod+I".action = focus-workspace-down;
-    "Mod+Ctrl+U".action = move-column-to-workspace-up;
-    "Mod+Ctrl+I".action = move-column-to-workspace-down;
+    "Mod+U".action = focus-workspace-down;
+    "Mod+I".action = focus-workspace-up;
+    "Mod+Ctrl+U".action = move-column-to-workspace-down;
+    "Mod+Ctrl+I".action = move-column-to-workspace-up;
     "Mod+Shift+U".action = move-workspace-down;
     "Mod+Shift+I".action = move-workspace-up;
 

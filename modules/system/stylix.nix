@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-mirage.yaml";
     # base16Scheme = {
     #   base00 = "2b3339";
     #   base01 = "323c41";
@@ -21,7 +21,7 @@
     #   base0F = "d699b6";
     # };
 
-    # polarity = "dark";
+    polarity = "dark";
     cursor = {
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Ice";
@@ -29,16 +29,16 @@
     };
     fonts = {
       monospace = {
-        package = pkgs.nerd-fonts.jetbrains-mono;
-        name = "JetBrains Mono Nerd Font";
+        package = pkgs.nerd-fonts.fira-code;
+        name = "Fira Code Mono";
       };
       sansSerif = {
-        package = pkgs.noto-fonts;
-        name = "Noto Sans";
+        package = pkgs.dejavu_fonts;
+        name = "Dejavu Sans";
       };
       serif = {
-        package = pkgs.noto-fonts;
-        name = "Noto Serif";
+        package = pkgs.dejavu_fonts;
+        name = "Dejavu Serif";
       };
       emoji = {
         package = pkgs.noto-fonts-monochrome-emoji;
