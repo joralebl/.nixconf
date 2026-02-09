@@ -43,11 +43,6 @@
             __unnkeyed-2 = "prettier";
             stop_after_first = true;
           };
-          "_" = [
-            "squeeze_blanks"
-            "trim_whitespace"
-            "trim_newlines"
-          ];
           # Conform can also run multiple formatters sequentially
           # python = [ "isort "black" ];
           # to use only the first one it finds in the list, set stop_after_first to true

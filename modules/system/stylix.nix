@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/ayu-mirage.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/monokai.yaml";
     # base16Scheme = {
     #   base00 = "2b3339";
     #   base01 = "323c41";
@@ -30,19 +30,19 @@
     fonts = {
       monospace = {
         package = pkgs.nerd-fonts.fira-code;
-        name = "Fira Code Mono";
+        name = "FiraCode Nerd Font Mono";
       };
       sansSerif = {
-        package = pkgs.dejavu_fonts;
-        name = "Dejavu Sans";
+        package = pkgs.noto-fonts;
+        name = "Noto Sans";
       };
       serif = {
-        package = pkgs.dejavu_fonts;
-        name = "Dejavu Serif";
+        package = pkgs.noto-fonts;
+        name = "Noto Serif";
       };
       emoji = {
-        package = pkgs.noto-fonts-monochrome-emoji;
-        name = "Noto Emoji";
+        package = pkgs.noto-fonts-color-emoji;
+        name = "Noto Color Emoji";
       };
     };
   };

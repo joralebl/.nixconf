@@ -1,9 +1,10 @@
 {
+  config,
   lib,
   pkgs,
   ...
 }: let
-  corner-radius = 4.0;
+  corner-radius = 10.0;
 in {
   programs.niri.settings = {
     xwayland-satellite = {
@@ -13,11 +14,16 @@ in {
     spawn-at-startup = [
       {command = ["noctalia-shell"];}
       {command = ["dispwin" "-d" "DP-1" "/home/jordanl/rtings-icc-profile.icm"];}
+	  {command = ["swayidle"];}
     ];
     input = {
       mouse = {
         accel-profile = "flat";
         accel-speed = 0;
+      };
+      keyboard = {
+        repeat-delay = 300;
+        repeat-rate = 50;
       };
     };
 
@@ -27,9 +33,11 @@ in {
       always-center-single-column = true;
 
       focus-ring = {
+        enable = false;
         width = 2;
       };
       border = {
+        enable = true;
         width = 2;
       };
 
@@ -57,6 +65,29 @@ in {
       {
         matches = [{is-floating = true;}];
         shadow.enable = true;
+      }
+      {
+        matches = [{is-focused = true;}];
+        shadow = {
+          enable = true;
+          color = config.lib.stylix.colors.base0D;
+          softness = 30;
+          spread = -10;
+          draw-behind-window = true;
+        };
+      }
+      {
+        matches = [{app-id = "firefox$";} {title = "^Picture-in-Picture$";}];
+        open-on-output = "HDMI-A-1";
+      }
+      {
+        matches = [{app-id = "mpv$";}];
+        open-on-output = "HDMI-A-1";
+      }
+
+      {
+        matches = [{app-id = "vesktop$";}];
+        open-on-output = "DP-2";
       }
     ];
 
@@ -113,6 +144,7 @@ in {
       QT_QPA_PLATFORMTHEME_QT6 = "gtk3";
       TERMINAL = "kitty";
       EDITOR = "nvim";
+      LISTENBRAINZ_USER_TOKEN = "d52b8907-0265-4c77-afe5-47aa59be4b82";
     };
   };
 }

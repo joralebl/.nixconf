@@ -11,7 +11,7 @@
     "Ctrl+Alt+Delete".action = spawn ["noctalia-shell" "ipc" "call" "sessionMenu" "toggle"];
 	"Mod+M".action = spawn ["noctalia-shell" "ipc" "call" "volume" "muteInput"];
 	"Mod+Alt+R".action = spawn ["noctalia-shell" "ipc" "call" "screenRecorder" "toggle"];
-	"Mod+Alt+E".action = spawn ["noctalia-shell" "ipc" "call" "launcher" "emoj"];
+	"Mod+Alt+E".action = spawn ["noctalia-shell" "ipc" "call" "launcher" "emoji"];
 	
 
     #niri

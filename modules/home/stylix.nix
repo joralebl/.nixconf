@@ -1,8 +1,5 @@
-_: {
+{pkgs, ...}: {
   stylix.targets = {
-    kitty.enable = false;
-    nixvim.enable = false;
-    starship.enable = false;
     gtk.enable = true;
     qt.enable = true;
     kde.enable = true;
@@ -10,12 +7,16 @@ _: {
     vesktop.enable = true;
     librewolf = {
       enable = true;
-      profileNames = ["default"];
+      profileNames = ["jordanl"];
     };
     bat.enable = true;
-    niri.enable = true;
     btop.enable = true;
-    mako.enable = true;
     vscode.enable = true;
+    niri.enable = true;
+  };
+  stylix.icons = {
+    enable = true;
+    package = pkgs.flat-remix-icon-theme;
+    dark = "Flat-Remix-Red-Dark";
   };
 }

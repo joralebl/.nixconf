@@ -1,27 +1,31 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    vscode-fhs
-    zed-editor-fhs
-    jetbrains.idea-community
-    docker-compose
+    vscodium-fhs
+    jetbrains.idea-oss
     mitscheme
     aseprite
-    bruno
-    bruno-cli
-    (blender.override {config.cudaSupport = true;})
+    # bruno
+    # bruno-cli
+    (blender.override {
+      config.cudaSupport = true;
+      config.rocmSupport = false;
+    })
     godot
     krita
-    # obsidian
     calibre
     prismlauncher
     r2modman
     pureref
     qbittorrent
     calcure
-    lc3tools
-    gnu-smalltalk
-    nmap
-    projectlibre
+    # lc3tools
+    # gnu-smalltalk
+    # nmap
+    # projectlibre
+    open-in-mpv
+    nicotine-plus
+    swayidle
+    material-maker
   ];
   programs.btop = {
     enable = true;
@@ -32,10 +36,10 @@
   programs.librewolf = {
     enable = true;
     profiles = {
-		default = {
-			name = "default";
-			isDefault = true;
-			};
+      jordanl = {
+        name = "jordanl";
+        isDefault = true;
+      };
     };
   };
 
@@ -47,18 +51,20 @@
   programs.mpv = {
     enable = true;
     package = (
-      pkgs.mpv-unwrapped.wrapper {
+      pkgs.mpv.override {
         scripts = with pkgs.mpvScripts; [
           uosc
           twitch-chat
           youtube-chat
-          youtube-upnext
+          sponsorblock-minimal
+          mpris
         ];
-
-        mpv = pkgs.mpv-unwrapped.override {
-          waylandSupport = true;
-        };
       }
     );
+    config = {
+      input-ipc-server = "/tmp/mpvsocket";
+      volume = 45;
+    };
   };
+  # services.xembed-sni-proxy.enable = true;
 }

@@ -10,11 +10,12 @@
   system.stateVersion = "24.05";
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.blacklistedKernelModules = ["nouveau" "nova_core"];
 
   programs.zsh.enable = true;
   users.users.${username} = {
     isNormalUser = true;
-    extraGroups = ["networkmanager" "wheel" "docker" "i2c"];
+    extraGroups = ["networkmanager" "wheel" "docker"];
     shell = pkgs.zsh;
   };
 
@@ -39,9 +40,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    clang-tools
-    clang
-    gcc
     vim
     lua
     ffmpeg
@@ -67,10 +65,9 @@
     wl-clipboard
     networkmanagerapplet
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
-    ddcutil
   ];
   programs.starship = {
-	enable = true;
+    enable = true;
     presets = [
       "pure-preset"
     ];
@@ -90,10 +87,16 @@
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     jack.enable = true;
-
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
+    extraConfig.pipewire = {
+      "99-disable-bell" = {
+        "context.properties" = {
+          "module.x11.bell" = false;
+        };
+      };
+    };
   };
 
   #bootloader
@@ -131,21 +134,20 @@
     nvidiaSettings = true;
     videoAcceleration = true;
     #forceFullCompositionPipeline = true;
-    package =
-      config.boot.kernelPackages.nvidiaPackages.stable
-      // {
-        open = config.boot.kernelPackages.nvidiaPackages.stable.open.overrideAttrs (old: {
-          patches =
-            (old.patches or [])
-            ++ [
-              (pkgs.fetchpatch {
-                name = "get_dev_pagemap.patch";
-                url = "https://github.com/NVIDIA/open-gpu-kernel-modules/commit/3e230516034d29e84ca023fe95e284af5cd5a065.patch";
-                hash = "sha256-BhL4mtuY5W+eLofwhHVnZnVf0msDj7XBxskZi8e6/k8=";
-              })
-            ];
-        });
-      };
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
+    # // {
+    #   open = config.boot.kernelPackages.nvidiaPackages.stable.open.overrideAttrs (old: {
+    #     patches =
+    #       (old.patches or [])
+    #       ++ [
+    #         (pkgs.fetchpatch {
+    #           name = "get_dev_pagemap.patch";
+    #           url = "https://github.com/NVIDIA/open-gpu-kernel-modules/commit/3e230516034d29e84ca023fe95e284af5cd5a065.patch";
+    #           hash = "sha256-BhL4mtuY5W+eLofwhHVnZnVf0msDj7XBxskZi8e6/k8=";
+    #         })
+    #       ];
+    #   });
+    # };
     # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
     #   version = "580.95.05";
     #   sha256_64bit = "sha256-hJ7w746EK5gGss3p8RwTA9VPGpp2lGfk5dlhsv4Rgqc=";
@@ -155,13 +157,11 @@
     #   persistencedSha256 = "sha256-QCwxXQfG/Pa7jSTBB0xD3lsIofcerAWWAHKvWjWGQtg=";
     # };
   };
-
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
   };
 
-  virtualisation.docker = {
-    enable = true;
-  };
+  security.rtkit.enable = true;
+  virtualisation.docker.enable = true;
 }

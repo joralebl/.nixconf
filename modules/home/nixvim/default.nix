@@ -19,5 +19,6 @@
     #./plugins/harpoon.nix
     ./plugins/toggleterm.nix
     ./plugins/vimwiki.nix
+	# ./plugins/render-markdown.nix
   ];
 }

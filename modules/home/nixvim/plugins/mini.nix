@@ -10,6 +10,7 @@
         };
         extra = {};
         sessions = {};
+        cursorword = {};
         # Better Around/Inside textobjects
         #
         # Examples:
@@ -85,8 +86,6 @@
           #   update_n_lines = "gsn";
           # };
         };
-        cursorword = {};
-
         # Simple and easy statusline.
         #  You could remove this setup call if you don't like it,
         #  and try some other statusline plugin
@@ -111,6 +110,8 @@
         git = {
         };
         diff = {
+        };
+        map = {
         };
 
         # ... and there is more!

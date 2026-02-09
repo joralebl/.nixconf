@@ -1,7 +1,4 @@
-{
-  username,
-  ...
-}: {
+{username, ...}: {
   imports = [
     ../../modules/home/shell
     ../../modules/home/nixvim
@@ -10,7 +7,7 @@
     ../../modules/home/packages.nix
     ../../modules/home/stylix.nix
     ../../modules/home/gtk.nix
-    ../../modules/home/qt.nix
+    # ../../modules/home/qt.nix
     ../../modules/home/niri
     ../../modules/home/scripts
   ];
