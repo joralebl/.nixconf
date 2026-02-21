@@ -9,7 +9,7 @@
 }: {
   system.stateVersion = "24.05";
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_18;
   boot.blacklistedKernelModules = ["nouveau" "nova_core"];
 
   programs.zsh.enable = true;
@@ -123,12 +123,17 @@
     options = ["defaults"];
   };
 
+  powerManagement = {
+		enable = true;
+		cpuFreqGovernor = "performance";
+	};
+
   #for Nvidia GPU
   services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {
     modesetting.enable = true;
-    powerManagement.enable = false;
+    powerManagement.enable = true;
     powerManagement.finegrained = false;
     open = true;
     nvidiaSettings = true;

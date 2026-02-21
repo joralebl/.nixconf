@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{pkgs, osConfig, ...}: {
+
   home.packages = with pkgs; [
     vscodium-fhs
     jetbrains.idea-oss
@@ -26,10 +27,27 @@
     nicotine-plus
     swayidle
     material-maker
+    uv
   ];
+
+  programs.lutris = {
+    enable = true;
+    extraPackages = with pkgs; [
+      gamemode
+      gamescope
+      mangohud
+      winetricks
+      protontricks
+      umu-launcher
+    ];
+    defaultWinePackage = pkgs.proton-ge-bin;
+    steamPackage = osConfig.programs.steam.package;
+  };
+
   programs.btop = {
     enable = true;
   };
+
   programs.chromium = {
     enable = true;
   };
@@ -66,5 +84,4 @@
       volume = 45;
     };
   };
-  # services.xembed-sni-proxy.enable = true;
 }

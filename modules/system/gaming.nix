@@ -12,7 +12,9 @@
     extraPackages = with pkgs; [
       gamescope
       gamemode
+      mangohud
     ];
+    protontricks.enable = true;
     gamescopeSession = {
       enable = true;
       args = [
@@ -26,21 +28,32 @@
       ];
     };
   };
+
   environment.systemPackages = with pkgs; [
-    mangohud
     protonup-ng
     wine-staging
     winetricks
     protontricks
-    lutris
-    xorg.xrandr
+    xrandr
   ];
 
   environment.sessionVariables = {
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/${username}/.steam/root/compatibilitytools.d";
   };
 
-  programs.gamemode.enable = true;
+  programs.gamemode = {
+    enable = true;
+    enableRenice = true;
+    settings = {
+      general = {
+        renice = 10;
+      };
+      # custom = {
+      #   start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
+      #   end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
+      # };
+    };
+  };
 
   programs.gamescope = {
     enable = true;

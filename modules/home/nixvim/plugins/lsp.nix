@@ -58,7 +58,6 @@
     # https://nix-community.github.io/nixvim/plugins/lsp/index.html
     plugins.lsp = {
       enable = true;
-
       # Enable the following language servers
       #  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
       #
@@ -108,16 +107,6 @@
 
         elixirls = {
           enable = true;
-        };
-
-        eslint = {
-          enable = true;
-          filetypes = [
-            "javascript"
-            "javascriptreact"
-			"typescript"
-			"typescriptreact"
-          ];
         };
 
         # ...etc. See `https://nix-community.github.io/nixvim/plugins/lsp` for a list of pre-configured LSPs

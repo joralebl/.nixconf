@@ -6,6 +6,7 @@
       enable = true;
       highlight.enable = true;
       indent.enable = true;
+	  additional_vim_regex_highlighting = true;
 
       grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
         bash
