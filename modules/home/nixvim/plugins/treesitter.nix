@@ -9,6 +9,7 @@
 	  additional_vim_regex_highlighting = true;
 
       grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+	   	astro
         bash
         json
         lua
@@ -39,6 +40,7 @@
         htmldjango
         css
         ruby
+		nim
       ];
 
       # TODO: Don't think I need this as nixGrammars is true which should auto install these???

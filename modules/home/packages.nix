@@ -1,87 +1,106 @@
-{pkgs, osConfig, ...}: {
-
+{
+  pkgs,
+  osConfig,
+  ...
+}:
+{
   home.packages = with pkgs; [
-    vscodium-fhs
-    jetbrains.idea-oss
-    mitscheme
-    aseprite
+    # mitscheme
+    # aseprite
     # bruno
-    # bruno-cli
     (blender.override {
       config.cudaSupport = true;
       config.rocmSupport = false;
     })
     godot
-    krita
+    # (krita.override {
+    # config.cudaSupport = true;
+    # })
     calibre
     prismlauncher
+    # uzdoom
     r2modman
-    pureref
+    eden
+    # pureref
     qbittorrent
     calcure
-    # lc3tools
-    # gnu-smalltalk
-    # nmap
-    # projectlibre
     open-in-mpv
     nicotine-plus
-    swayidle
     material-maker
-    uv
+    # (llama-cpp.override {
+    # config.cudaSupport = true;
+    # config.rocmSupport = false;
+    # })
+    # llama-swap
+    # opencode
+    dig
+    obsidian
+    openrgb-with-all-plugins
+    gpu-screen-recorder
+    tree-sitter
+    kitty
   ];
+  programs = {
+    lutris = {
+      enable = true;
+      extraPackages = with pkgs; [
+        gamemode
+        gamescope
+        mangohud
+        winetricks
+        protontricks
+        umu-launcher
+      ];
+      steamPackage = osConfig.programs.steam.package;
+    };
 
-  programs.lutris = {
-    enable = true;
-    extraPackages = with pkgs; [
-      gamemode
-      gamescope
-      mangohud
-      winetricks
-      protontricks
-      umu-launcher
-    ];
-    defaultWinePackage = pkgs.proton-ge-bin;
-    steamPackage = osConfig.programs.steam.package;
-  };
+    btop = {
+      enable = true;
+    };
 
-  programs.btop = {
-    enable = true;
-  };
-
-  programs.chromium = {
-    enable = true;
-  };
-  programs.librewolf = {
-    enable = true;
-    profiles = {
-      jordanl = {
-        name = "jordanl";
-        isDefault = true;
+    chromium = {
+      enable = true;
+    };
+    librewolf = {
+      enable = true;
+      profiles = {
+        jordanl = {
+          name = "jordanl";
+          isDefault = true;
+        };
       };
     };
-  };
 
-  programs.vesktop = {
-    enable = true;
-    vencord.useSystem = true;
-  };
-
-  programs.mpv = {
-    enable = true;
-    package = (
-      pkgs.mpv.override {
-        scripts = with pkgs.mpvScripts; [
-          uosc
-          twitch-chat
-          youtube-chat
-          sponsorblock-minimal
-          mpris
-        ];
-      }
-    );
-    config = {
-      input-ipc-server = "/tmp/mpvsocket";
-      volume = 45;
+    vesktop = {
+      enable = true;
+      vencord.useSystem = true;
     };
+
+    mpv = {
+      enable = true;
+      package = (
+        pkgs.mpv.override {
+          scripts = with pkgs.mpvScripts; [
+            uosc
+            twitch-chat
+            youtube-chat
+            sponsorblock-minimal
+            mpris
+          ];
+        }
+      );
+      config = {
+        input-ipc-server = "/tmp/mpvsocket";
+        volume = 45;
+      };
+    };
+    zed-editor = {
+      enable = true;
+      package = pkgs.zed-editor;
+    };
+  };
+
+  services = {
+    easyeffects.enable = true;
   };
 }

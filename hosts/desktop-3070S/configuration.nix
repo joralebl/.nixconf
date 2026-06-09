@@ -6,21 +6,40 @@
   username,
   host,
   ...
-}: {
+}:
+{
   system.stateVersion = "24.05";
 
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_18;
-  boot.blacklistedKernelModules = ["nouveau" "nova_core"];
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  boot.blacklistedKernelModules = [
+    "nouveau"
+    "nova_core"
+  ];
 
   programs.zsh.enable = true;
   users.users.${username} = {
     isNormalUser = true;
-    extraGroups = ["networkmanager" "wheel" "docker"];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
     shell = pkgs.zsh;
   };
-
+  nixpkgs.overlays = [
+    (_: prev: {
+      openldap = prev.openldap.overrideAttrs {
+        doCheck = false; # False is a bit more honest on x86_64 systems
+      };
+    })
+  ];
   nix.settings = {
-    experimental-features = ["nix-command" "flakes"];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    substituters = [ "https://nix-citizen.cachix.org" ];
+    trusted-public-keys = [ "nix-citizen.cachix.org-1:lPMkWc2X8XD4/7YPEEwXKKBg+SVbYTVrAaLA2wQTKCo=" ];
   };
 
   nix.gc = {
@@ -28,8 +47,16 @@
     dates = lib.mkDefault "weekly";
     options = lib.mkDefault "--delete-older-than 7d";
   };
-  zramSwap.enable = true;
-
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 8 * 1024;
+    }
+  ];
+  zramSwap = {
+    enable = true;
+    memoryMax = 32 * 1024 * 1024 * 1024;
+  };
   nixpkgs.config.allowUnfree = true;
 
   time.timeZone = "America/Moncton";
@@ -47,7 +74,7 @@
     curl
     xsel
     ncdu
-    fastfetchMinimal
+    fastfetch.minimal
     eza
     bat
     mcfly
@@ -57,7 +84,6 @@
     cargo
     rebar3
     taskwarrior3
-    silver-searcher
     pwvucontrol
     unrar
     unzip
@@ -74,10 +100,6 @@
   };
   programs.nix-ld = {
     enable = true;
-    libraries = with pkgs; [
-      stdenv.cc.cc
-      gccStdenv.cc.cc
-    ];
   };
   services.pulseaudio.enable = false;
   services.pipewire = {
@@ -114,22 +136,22 @@
   fileSystems."/home/jordanl/Store" = {
     device = "/dev/disk/by-uuid/f0e41fd2-331a-4265-8938-b1f3bb4b4da8";
     fsType = "btrfs";
-    options = ["defaults"];
+    options = [ "defaults" ];
   };
 
   fileSystems."/home/jordanl/Extra" = {
     device = "/dev/disk/by-uuid/b93b2fa6-4a76-4cd7-85f9-fd035d2f11a4";
     fsType = "ext4";
-    options = ["defaults"];
+    options = [ "defaults" ];
   };
 
   powerManagement = {
-		enable = true;
-		cpuFreqGovernor = "performance";
-	};
+    enable = true;
+    cpuFreqGovernor = "performance";
+  };
 
   #for Nvidia GPU
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
     modesetting.enable = true;
@@ -140,33 +162,11 @@
     videoAcceleration = true;
     #forceFullCompositionPipeline = true;
     package = config.boot.kernelPackages.nvidiaPackages.latest;
-    # // {
-    #   open = config.boot.kernelPackages.nvidiaPackages.stable.open.overrideAttrs (old: {
-    #     patches =
-    #       (old.patches or [])
-    #       ++ [
-    #         (pkgs.fetchpatch {
-    #           name = "get_dev_pagemap.patch";
-    #           url = "https://github.com/NVIDIA/open-gpu-kernel-modules/commit/3e230516034d29e84ca023fe95e284af5cd5a065.patch";
-    #           hash = "sha256-BhL4mtuY5W+eLofwhHVnZnVf0msDj7XBxskZi8e6/k8=";
-    #         })
-    #       ];
-    #   });
-    # };
-    # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-    #   version = "580.95.05";
-    #   sha256_64bit = "sha256-hJ7w746EK5gGss3p8RwTA9VPGpp2lGfk5dlhsv4Rgqc=";
-    #   sha256_aarch64 = "sha256-zLRCbpiik2fGDa+d80wqV3ZV1U1b4lRjzNQJsLLlICk=";
-    #   openSha256 = "sha256-RFwDGQOi9jVngVONCOB5m/IYKZIeGEle7h0+0yGnBEI=";
-    #   settingsSha256 = "sha256-F2wmUEaRrpR1Vz0TQSwVK4Fv13f3J9NJLtBe4UP2f14=";
-    #   persistencedSha256 = "sha256-QCwxXQfG/Pa7jSTBB0xD3lsIofcerAWWAHKvWjWGQtg=";
-    # };
-  };
+ };
   hardware.bluetooth = {
     enable = true;
-    powerOnBoot = true;
+    powerOnBoot = false;
   };
 
   security.rtkit.enable = true;
-  virtualisation.docker.enable = true;
 }

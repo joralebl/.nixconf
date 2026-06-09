@@ -5,18 +5,21 @@
     withPython3 = true;
 
     colorschemes = {
-      monokai-pro = {
+      dracula = {
         enable = true;
-        settings = {
-          devicons = true;
-          filter = "pro";
-          terminal_colors = true;
-          styles = {
-            annotation.italic = true;
-            comment.italic = true;
-          };
-        };
       };
+      # monokai-pro = {
+      #   enable = true;
+      #   settings = {
+      #     devicons = true;
+      #     filter = "pro";
+      #     terminal_colors = true;
+      #     styles = {
+      #       annotation.italic = true;
+      #       comment.italic = true;
+      #     };
+      #   };
+      # };
     };
 
     globals = {

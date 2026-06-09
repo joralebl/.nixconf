@@ -2,7 +2,8 @@
   pkgs,
   username,
   ...
-}: {
+}:
+{
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -57,6 +58,14 @@
 
   programs.gamescope = {
     enable = true;
-    capSysNice = true;
+    capSysNice = false;
+  };
+  programs.rsi-launcher = {
+    enable = true;
+    preCommands = ''
+      export DXVK_HUD=compiler;
+      export MANGO_HUD=1;
+    '';
+    setLimits = true;
   };
 }

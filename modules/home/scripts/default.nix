@@ -16,5 +16,6 @@
     # (import ./task-waybar.nix {inherit pkgs;})
     (import ./niri-gaming-mode.nix {inherit pkgs;})
     (import ./note-now.nix {inherit pkgs;})
+	(import ./theme-to-stylix.nix {inherit pkgs username;})
   ];
 }

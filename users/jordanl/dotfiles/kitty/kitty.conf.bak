@@ -1,0 +1,23 @@
+font_family FiraCode Nerd Font Mono
+
+shell_integration enabled
+
+active_tab_font_style bold
+background_opacity 0.85
+confirm_os_window_close 0
+enable_audio_bell no
+enabled_layouts Tall, *
+inactive_tab_font_style bold
+linux_display_server wayland
+mouse_hide_wait -1.0
+tab_bar_margin_width 0
+tab_bar_style powerline
+tab_fade 1
+tab_powerline_style slanted
+window_margin_width 0
+
+action_alias launch_tab launch --cwd=current --type=tab
+action_alias launch_window launch --cwd=current --type=window
+
+map kitty_mod+enter launch_window
+map kitty_mod+t launch_tab

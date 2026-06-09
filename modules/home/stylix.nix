@@ -1,22 +1,44 @@
-{pkgs, ...}: {
-  stylix.targets = {
-    gtk.enable = true;
-    qt.enable = true;
-    kde.enable = true;
-    vencord.enable = true;
-    vesktop.enable = true;
-    librewolf = {
-      enable = true;
-      profileNames = ["jordanl"];
+{
+  pkgs,
+  ...
+}
+: {
+  stylix = {
+    base16Scheme = ../../colors16.yaml;
+	polarity = "dark";
+    autoEnable = false;
+    targets = {
+      bat.enable = true;
+      nixos-icons.enable = true;
+      niri.enable = true;
     };
-    bat.enable = true;
-    btop.enable = true;
-    vscode.enable = true;
-    niri.enable = true;
-  };
-  stylix.icons = {
-    enable = true;
-    package = pkgs.flat-remix-icon-theme;
-    dark = "Flat-Remix-Red-Dark";
+    icons = {
+      enable = false;
+      package = pkgs.flat-remix-icon-theme;
+      dark = "Flat-Remix-Green-Dark";
+    }; 
+	cursor = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Ice";
+      size = 24;
+    };
+    fonts = {
+      monospace = {
+        package = pkgs.nerd-fonts.fira-code;
+        name = "FiraCode Nerd Font Mono";
+      };
+      sansSerif = {
+        package = pkgs.noto-fonts;
+        name = "Noto Sans";
+      };
+      serif = {
+        package = pkgs.noto-fonts;
+        name = "Noto Serif";
+      };
+      emoji = {
+        package = pkgs.noto-fonts-color-emoji;
+        name = "Noto Color Emoji";
+      };
+    };
   };
 }
