@@ -15,17 +15,17 @@
     };
 
     niri = {
-      url = "github:sodiboo/niri-flake";
+      url = "github:epireyn/niri-flake";
     };
 
     noctalia = {
-      url = "github:noctalia-dev/noctalia/legacy-v4";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:noctalia-dev/noctalia";
     };
 
     nix-citizen = {
       url = "github:LovingMelody/nix-citizen";
     };
+    comfyui-nix.url = "github:utensils/comfyui-nix";
   };
 
   outputs =
@@ -35,13 +35,20 @@
       home-manager,
       ...
     }:
+    let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs { inherit system; };
+    in
     {
+      packages.${system}.helium = pkgs.callPackage ./derivations/helium.nix { };
+      defaultPackage.${system} = self.packages.${system}.helium;
+
       nixosConfigurations = {
         desktop-3070S =
           let
             host = "desktop-3070S";
             username = "jordanl";
-            specialArgs = { inherit inputs host username; };
+            specialArgs = { inherit inputs host username self; };
           in
           nixpkgs.lib.nixosSystem {
             inherit specialArgs;

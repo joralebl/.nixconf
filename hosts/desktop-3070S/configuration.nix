@@ -5,18 +5,21 @@
   lib,
   username,
   host,
+  system,
   ...
 }:
 {
   system.stateVersion = "24.05";
-  nixpkgs.config.permittedInsecurePackages = [
-    "pnpm-10.29.2"
-  ];
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
   boot.blacklistedKernelModules = [
     "nouveau"
     "nova_core"
   ];
+
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
 
   programs.zsh.enable = true;
   users.users.${username} = {
@@ -34,6 +37,7 @@
     #     doCheck = false; # False is a bit more honest on x86_64 systems
     #   };
     # })
+    inputs.comfyui-nix.overlays.default
   ];
   nix.settings = {
     experimental-features = [

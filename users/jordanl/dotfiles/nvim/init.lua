@@ -101,7 +101,7 @@ vim.lsp.enable({
     'elp',
     'zls',
     'elixirls',
-    'pyright',
+    'ruff',
     'nim_langserver',
     'ocamllsp',
     'emmet_language_server',
@@ -139,7 +139,7 @@ opt.autochdir = false
 opt.clipboard = "unnamedplus"
 
 vim.cmd.filetype("plugin indent on")
-vim.diagnostic.config({ virtual_text = true })
+vim.diagnostic.config({ virtual_text = false })
 
 vim.g.have_nerd_font = true
 
@@ -182,7 +182,8 @@ keymap("n", "<Leader>ev", ":e ~/.config/nvim/init.lua<CR>")
 
 --mini-bufremove
 keymap("n", "<Leader>bdc", ":lua MiniBufremove.delete()<CR>", { desc = "Delete the current buffer" })
-keymap("n", "<Leader>buc", ":lua MiniBufremove.unshow_in_window()<CR>", { desc = "Unshow this buffer from current window" })
+keymap("n", "<Leader>buc", ":lua MiniBufremove.unshow_in_window()<CR>",
+    { desc = "Unshow this buffer from current window" })
 keymap("n", "<Leader>bua", ":lua MiniBufremove.unshow()<CR>", { desc = "Unshow this buffer from all windows" })
 
 --mini-pick
@@ -190,7 +191,7 @@ keymap("n", "<Leader>ff", "<cmd>Pick files<CR>", { desc = "Pick files" })
 keymap("n", "<Leader>fb", "<cmd>Pick buffers<CR>", { desc = "Pick open buffers" })
 keymap("n", "<Leader>fg", "<cmd>Pick grep_live<CR>", { desc = "Pick from live grep" })
 --toggleterm
-keymap("n", "<Leader>/", ":ToggleTerm<CR>",s)
+keymap("n", "<Leader>/", ":ToggleTerm<CR>", s)
 
 
 -- AUTOCOMMANDS
@@ -206,6 +207,12 @@ autocmd({ "VimResized" }, {
         local current_tab = vim.fn.tabpagenr()
         vim.cmd("tabdo wincmd =")
         vim.cmd("tabnext " .. current_tab)
+    end,
+})
+
+autocmd({'BufEnter','FocusGained','CursorHold'}, {
+    callback = function()
+        vim.cmd("checktime")
     end,
 })
 
@@ -225,3 +232,6 @@ autocmd("LspAttach", {
         end
     end,
 })
+
+local ok, matugen = pcall(require, 'matugen')
+if ok then matugen.setup() end

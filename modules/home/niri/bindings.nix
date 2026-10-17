@@ -2,77 +2,41 @@
   programs.niri.settings.binds = with config.lib.niri.actions; {
     #noctalia
     "Mod+B".action = spawn [
-      "firefox"
+      "helium"
     ];
     "Mod+D".action = spawn [
-      "noctalia-shell"
-      "ipc"
-      "call"
+      "noctalia"
+      "msg"
+      "panel-toggle"
       "launcher"
-      "toggle"
     ];
     "Mod+S".action = spawn [
-      "noctalia-shell"
-      "ipc"
-      "call"
-      "controlCenter"
-      "toggle"
-    ];
-    "Mod+Shift+S".action = spawn [
-      "noctalia-shell"
-      "ipc"
-      "call"
-      "settings"
-      "toggle"
-    ];
-    "Mod+Alt+B".action = spawn [
-      "noctalia-shell"
-      "ipc"
-      "call"
-      "bar"
-      "toggle"
+      "noctalia"
+      "msg"
+      "settings-toggle"
     ];
     "Mod+Alt+L".action = spawn [
-      "noctalia-shell"
-      "ipc"
-      "call"
-      "lockScreen"
+      "noctalia"
+      "msg"
+      "session"
       "lock"
     ];
     "Mod+Shift+Q".action = spawn [
-      "noctalia-shell"
-      "ipc"
-      "call"
-      "sessionMenu"
-      "toggle"
+      "noctalia"
+      "msg"
+      "panel-toggle"
+      "session"
     ];
     "Ctrl+Alt+Delete".action = spawn [
-      "noctalia-shell"
-      "ipc"
-      "call"
-      "sessionMenu"
-      "toggle"
+      "noctalia"
+      "msg"
+      "panel-toggle"
+      "session"
     ];
     "Mod+M".action = spawn [
-      "noctalia-shell"
-      "ipc"
-      "call"
-      "volume"
-      "muteInput"
-    ];
-    "Mod+Alt+R".action = spawn [
-      "noctalia-shell"
-      "ipc"
-      "call"
-      "screenRecorder"
-      "toggle"
-    ];
-    "Mod+Alt+E".action = spawn [
-      "noctalia-shell"
-      "ipc"
-      "call"
-      "launcher"
-      "emoji"
+      "noctalia"
+      "msg"
+      "mic-mute"
     ];
 
     #niri

@@ -15,10 +15,10 @@ in
       path = lib.getExe pkgs.xwayland-satellite-unstable;
     };
     debug = {
-      honor-xdg-activation-with-invalid-serial = [];
+      honor-xdg-activation-with-invalid-serial = [ ];
     };
     spawn-at-startup = [
-      { command = [ "noctalia-shell" ]; }
+      { command = [ "noctalia" ]; }
       {
         command = [
           "dispwin"
@@ -36,6 +36,9 @@ in
       keyboard = {
         repeat-delay = 300;
         repeat-rate = 50;
+      };
+      tablet = {
+        map-to-output = "DP-1";
       };
     };
 
@@ -75,6 +78,12 @@ in
 
     prefer-no-csd = true;
     window-rules = [
+      {
+        matches = [ {app-id = "dev.noctalia.Noctalia";} ];
+        open-floating = true;
+        default-column-width.fixed = 1080;
+        default-window-height.fixed = 920;
+      }
       {
         matches = [ ];
         geometry-corner-radius = {
@@ -135,6 +144,7 @@ in
       DP-1 = {
         enable = true;
         focus-at-startup = true;
+        variable-refresh-rate = "on-demand";
         mode = {
           width = 2560;
           height = 1440;
@@ -174,6 +184,8 @@ in
       TERMINAL = "kitty";
       EDITOR = "nvim";
       LISTENBRAINZ_USER_TOKEN = "d52b8907-0265-4c77-afe5-47aa59be4b82";
+      KILO_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbnYiOiJwcm9kdWN0aW9uIiwia2lsb1VzZXJJZCI6IjA0NDZmZTY5LTkxMTEtNDk3YS04OWM0LTYzNTI4ZjRjYzQ2ZSIsImFwaVRva2VuUGVwcGVyIjpudWxsLCJ2ZXJzaW9uIjozLCJpYXQiOjE3ODU0NzMxNzUsImV4cCI6MTk0MzE1MzE3NX0.io4sdsWPtWfZhwLfSFhjg81i4xjzhwvAxD9wzPvXf9s";
+
     };
   };
 }

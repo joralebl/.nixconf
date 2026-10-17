@@ -11,7 +11,7 @@
     ../../modules/system/niri.nix
     ../../modules/system/greetd.nix
     ../../modules/system/nautilus.nix
-	../../modules/system/fonts.nix
+    ../../modules/system/fonts.nix
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];

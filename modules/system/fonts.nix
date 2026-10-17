@@ -14,6 +14,8 @@
       material-icons
       # cantarell-fonts
       open-fonts
+      nerd-fonts.commit-mono
+
     ];
   };
 }
