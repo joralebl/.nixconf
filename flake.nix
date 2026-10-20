@@ -70,9 +70,10 @@
               }
             ];
           };
-        protosrv =
+        laptop-UX31A =
           let
-            host = "protosrv";
+            host = "ux31a";
+            username = "jordanl";
             specialArgs = { inherit inputs host; };
           in
           nixpkgs.lib.nixosSystem {
@@ -88,7 +89,7 @@
                   useUserPackages = true;
                   backupFileExtension = "bak";
                   extraSpecialArgs = inputs // specialArgs;
-                  users.proto = import ./users/proto/home.nix;
+                  users.${username} = import ./users/proto/home.nix;
                 };
               }
             ];
