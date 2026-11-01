@@ -11,10 +11,6 @@
 {
   system.stateVersion = "24.05";
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
-  boot.blacklistedKernelModules = [
-    "nouveau"
-    "nova_core"
-  ];
 
   programs.appimage = {
     enable = true;
@@ -31,14 +27,7 @@
     ];
     shell = pkgs.zsh;
   };
-  nixpkgs.overlays = [
-    # (_: prev: {
-    #   openldap = prev.openldap.overrideAttrs {
-    #     doCheck = false; # False is a bit more honest on x86_64 systems
-    #   };
-    # })
-    inputs.comfyui-nix.overlays.default
-  ];
+
   nix.settings = {
     experimental-features = [
       "nix-command"
@@ -46,27 +35,15 @@
     ];
     substituters = [
       "https://nix-citizen.cachix.org"
-      "https://noctalia.cachix.org"
     ];
     trusted-public-keys = [
       "nix-citizen.cachix.org-1:lPMkWc2X8XD4/7YPEEwXKKBg+SVbYTVrAaLA2wQTKCo="
-      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
     ];
   };
   nix.gc = {
     automatic = lib.mkDefault true;
     dates = lib.mkDefault "weekly";
     options = lib.mkDefault "--delete-older-than 7d";
-  };
-  swapDevices = [
-    {
-      device = "/var/lib/swapfile";
-      size = 8 * 1024;
-    }
-  ];
-  zramSwap = {
-    enable = true;
-    memoryMax = 32 * 1024 * 1024 * 1024;
   };
   nixpkgs.config.allowUnfree = true;
 
@@ -95,13 +72,8 @@
     cargo
     rebar3
     taskwarrior3
-    pwvucontrol
     unrar
     unzip
-    # ~~~~Niri
-    wl-clipboard
-    networkmanagerapplet
-    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
   programs.starship = {
     enable = true;
@@ -112,6 +84,7 @@
   programs.nix-ld = {
     enable = true;
   };
+  security.rtkit.enable = true;
   services.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
@@ -144,16 +117,28 @@
 
   networking.networkmanager.enable = true;
 
-  fileSystems."/home/jordanl/Store" = {
-    device = "/dev/disk/by-uuid/f0e41fd2-331a-4265-8938-b1f3bb4b4da8";
-    fsType = "btrfs";
-    options = [ "defaults" ];
-  };
+  fileSystems = {
+    "/home/jordanl/Store" = {
+      device = "/dev/disk/by-uuid/f0e41fd2-331a-4265-8938-b1f3bb4b4da8";
+      fsType = "btrfs";
+      options = [ "defaults" ];
+    };
 
-  fileSystems."/home/jordanl/Extra" = {
-    device = "/dev/disk/by-uuid/b93b2fa6-4a76-4cd7-85f9-fd035d2f11a4";
-    fsType = "ext4";
-    options = [ "defaults" ];
+    "/home/jordanl/Extra" = {
+      device = "/dev/disk/by-uuid/b93b2fa6-4a76-4cd7-85f9-fd035d2f11a4";
+      fsType = "ext4";
+      options = [ "defaults" ];
+    };
+  };
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 8 * 1024;
+    }
+  ];
+  zramSwap = {
+    enable = true;
+    memoryMax = 32 * 1024 * 1024 * 1024;
   };
 
   powerManagement = {
@@ -161,23 +146,9 @@
     cpuFreqGovernor = "performance";
   };
 
-  #for Nvidia GPU
-  services.xserver.videoDrivers = [ "nvidia" ];
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = true;
-    powerManagement.finegrained = false;
-    open = true;
-    nvidiaSettings = true;
-    videoAcceleration = true;
-    #forceFullCompositionPipeline = true;
-    package = config.boot.kernelPackages.nvidiaPackages.latest;
-  };
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = false;
   };
 
-  security.rtkit.enable = true;
 }

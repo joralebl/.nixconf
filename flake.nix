@@ -25,7 +25,6 @@
     nix-citizen = {
       url = "github:LovingMelody/nix-citizen";
     };
-    comfyui-nix.url = "github:utensils/comfyui-nix";
   };
 
   outputs =
@@ -74,7 +73,7 @@
           let
             host = "ux31a";
             username = "jordanl";
-            specialArgs = { inherit inputs host; };
+            specialArgs = { inherit inputs host username self; };
           in
           nixpkgs.lib.nixosSystem {
             inherit specialArgs;

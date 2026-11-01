@@ -30,14 +30,14 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "helium";
-  version = "0.19.2.1";
+  version = "0.20.1.1";
 
   src = fetchurl {
     url = "https://github.com/imputnet/helium-linux/releases/download/${finalAttrs.version}/helium-${finalAttrs.version}-x86_64_linux.tar.xz";
-    sha256 = "707cf319e3a3d2aa061ca15d754877bd18b8b289208738c829fcb0873bc7ecdb";
+    sha256 = "ICP6RM76D70+GQcch+kNYSdfCLqPW0jVjCNSFVZem1M=";
   };
 
-  sourceRoot = "helium-0.19.2.1-x86_64_linux";
+  sourceRoot = "helium-${finalAttrs.version}-x86_64_linux";
 
   nativeBuildInputs = [ pkgs.makeWrapper ];
 
@@ -89,8 +89,7 @@ stdenv.mkDerivation (finalAttrs: {
     license = licenses.asl20;
     platforms = [ "x86_64-linux" ];
     maintainers = [
-      Jordan
-      LeBlanc
+      "joralebl"
     ];
   };
 })

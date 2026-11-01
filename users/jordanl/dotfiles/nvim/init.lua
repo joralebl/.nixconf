@@ -116,7 +116,6 @@ local opt = vim.opt
 
 opt.swapfile = false
 opt.relativenumber = true
-opt.expandtab = true
 opt.scrolloff = 10
 opt.hlsearch = false
 opt.inccommand = "split"
@@ -139,7 +138,7 @@ opt.autochdir = false
 opt.clipboard = "unnamedplus"
 
 vim.cmd.filetype("plugin indent on")
-vim.diagnostic.config({ virtual_text = false })
+vim.diagnostic.config({ virtual_text = true })
 
 vim.g.have_nerd_font = true
 
@@ -156,6 +155,7 @@ keymap("t", "<ESC>", "<C-\\><C-N>")                           -- Exit terminal m
 keymap("n", "<Leader>ef", ":lua MiniFiles.open()<CR>", s)
 keymap("n", "<Leader>ec", ":lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>", s)
 keymap("i", "jk", "<Esc>", s)
+keymap("n", "<Leader>td", ":lua MiniBasics.toggle_diagnostic()<CR>")
 
 
 --undo checkpoints on punctuation
@@ -232,6 +232,3 @@ autocmd("LspAttach", {
         end
     end,
 })
-
-local ok, matugen = pcall(require, 'matugen')
-if ok then matugen.setup() end

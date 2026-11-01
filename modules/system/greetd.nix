@@ -1,38 +1,50 @@
 {
   config,
   pkgs,
+  lib,
   ...
-}: {
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --sessions ${config.services.displayManager.sessionData.desktops}/share/xsessions:${config.services.displayManager.sessionData.desktops}/share/wayland-sessions --remember --remember-user-session";
-        user = "greeter";
-      };
-    };
+}:
+let
+  cfg = config.greeters.tuigreet;
+in
+{
+
+  options.greeters.tuigreet = {
+    enable = lib.mkEnableOption "greetd with tuigreet";
   };
 
-  # this is a life saver.
-  # literally no documentation about this anywhere.
-  # might be good to write about this...
-  # https://www.reddit.com/r/NixOS/comments/u0cdpi/tuigreet_with_xmonad_how/
-
-  systemd = {
-    # To prevent getting stuck at shutdown
-    settings = {
-      Manager = {
-        DefaultTimeoutStopSec = "10s";
+  config = lib.mkIf cfg.enable {
+    services.greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.tuigreet}/bin/tuigreet --sessions ${config.services.displayManager.sessionData.desktops}/share/xsessions:${config.services.displayManager.sessionData.desktops}/share/wayland-sessions --remember --remember-user-session";
+          user = "greeter";
+        };
       };
     };
-    services.greetd.serviceConfig = {
-      Type = "idle";
-      StandardInput = "tty";
-      StandardOutput = "tty";
-      StandardError = "journal";
-      TTYReset = true;
-      TTYVHangup = true;
-      TTYVTDisallocate = true;
+
+    # this is a life saver.
+    # literally no documentation about this anywhere.
+    # might be good to write about this...
+    # https://www.reddit.com/r/NixOS/comments/u0cdpi/tuigreet_with_xmonad_how/
+
+    systemd = {
+      # To prevent getting stuck at shutdown
+      settings = {
+        Manager = {
+          DefaultTimeoutStopSec = "10s";
+        };
+      };
+      services.greetd.serviceConfig = {
+        Type = "idle";
+        StandardInput = "tty";
+        StandardOutput = "tty";
+        StandardError = "journal";
+        TTYReset = true;
+        TTYVHangup = true;
+        TTYVTDisallocate = true;
+      };
     };
   };
 }

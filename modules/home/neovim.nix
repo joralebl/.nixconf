@@ -12,7 +12,6 @@
     extraPackages = with pkgs; [
       lua-language-server
       nixd
-      nil
       stylua
       nixfmt
     ];
