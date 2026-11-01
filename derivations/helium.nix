@@ -1,7 +1,8 @@
 {
-  pkgs,
   lib,
   stdenv,
+  autoPatchelfHook,
+  makeWrapper,
   fetchurl,
   dbus,
   at-spi2-atk,
@@ -27,7 +28,33 @@
   libXrender,
   udev,
 }:
-
+let
+  runtimeLibs = [
+    glib
+    nspr
+    nss
+    cups
+    expat
+    libxcb
+    libX11
+    libXext
+    libXcomposite
+    libXdamage
+    libXfixes
+    libXrender
+    libXrandr
+    libxkbcommon
+    alsa-lib
+    at-spi2-atk
+    at-spi2-core
+    cairo
+    pango
+    libgbm
+    libGL
+    udev
+    dbus
+  ];
+in
 stdenv.mkDerivation (finalAttrs: {
   pname = "helium";
   version = "0.20.1.1";
@@ -39,57 +66,44 @@ stdenv.mkDerivation (finalAttrs: {
 
   sourceRoot = "helium-${finalAttrs.version}-x86_64_linux";
 
-  nativeBuildInputs = [ pkgs.makeWrapper ];
+  nativeBuildInputs = [
+    autoPatchelfHook
+    makeWrapper
+  ];
+  autoPatchelfIgnoreMissingDeps = [
+    "libQt5Core.so.5"
+    "libQt5Gui.so.5"
+    "libQt5Widgets.so.5"
+    "libQt6Core.so.6"
+    "libQt6Gui.so.6"
+    "libQt6Widgets.so.6"
+  ];
+  buildInputs = runtimeLibs ++ [ stdenv.cc.cc.lib ];
+  dontBuild = true;
+  dontStrip = true;
 
   installPhase = ''
+
+    runHook preInstall
+
     mkdir -p $out/opt/helium
     cp -a . $out/opt/helium/
 
-    mkdir -p $out/bin
-    wrapProgram $out/opt/helium/helium \
-      --suffix LD_LIBRARY_PATH : ${
-        lib.makeLibraryPath [
-          glib
-          nspr
-          nss
-          cups
-          expat
-          libxcb
-          libX11
-          libXext
-          libXcomposite
-          libXdamage
-          libXfixes
-          libXrender
-          libXrandr
-          libxkbcommon
-          alsa-lib
-          at-spi2-atk
-          at-spi2-core
-          cairo
-          pango
-          libgbm
-          libGL
-          udev
-          dbus
-        ]
-      }
+    makeWrapper $out/opt/helium/helium $out/bin/helium \
+      --suffix LD_LIBRARY_PATH : ${lib.makeLibraryPath runtimeLibs}
 
-    ln -s $out/opt/helium/helium $out/bin/helium
+    install -Dm644 helium.desktop $out/share/applications/helium.desktop
+    install -Dm644 product_logo_256.png \
+      $out/share/icons/hicolor/256x256/apps/helium.png
 
-    mkdir -p $out/share/applications
-    cp helium.desktop $out/share/applications/
-
-    mkdir -p $out/share/icons/hicolor/256x256/apps
-    cp product_logo_256.png $out/share/icons/hicolor/256x256/apps/helium.png
+    runHook postInstall
   '';
   meta = with lib; {
     description = "Fast, private, and honest web browser";
     homepage = "https://github.com/imputnet/helium";
     license = licenses.asl20;
     platforms = [ "x86_64-linux" ];
-    maintainers = [
-      "joralebl"
-    ];
+    mainProgram = "helium";
+    sourceProvenance = [ sourceTypes.binaryNativeCode ];
   };
 })

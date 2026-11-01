@@ -23,5 +23,5 @@
   config.greeters.noctalia-greeter.enable = true;
   config.desktops.noctalia-shell.enable = true;
   config.flatpak.enable = true;
-  config.gpuVendors.nvidia.enable = true;
+  config.gpuVendor.nvidia.enable = true;
 }

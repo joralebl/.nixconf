@@ -40,6 +40,11 @@
     clisp
     gearlever
   ];
+
+  programs.pi-coding-agent = {
+    enable = true;
+    extraPackages = [pkgs.nodejs];
+  };
   programs = {
     opencode = {
       enable = true;
@@ -181,5 +186,6 @@
 
   services = {
     easyeffects.enable = true;
+    xembed-sni-proxy.enable = true;
   };
 }

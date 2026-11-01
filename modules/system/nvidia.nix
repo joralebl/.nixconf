@@ -27,7 +27,7 @@ in
     hardware.nvidia = {
       modesetting.enable = true;
       powerManagement.enable = true;
-      powerManagement.finegrained = true;
+      powerManagement.finegrained = false;
       open = cfg.open;
       nvidiaSettings = true;
       videoAcceleration = true;
